@@ -59,6 +59,35 @@ class TransaksiController extends Controller
         return redirect()->route('transaksi');
     }
 
+    public function tambahCustomer()
+    {
+        $user = User::get();
+        $jenis_cucian = JenisCucian::get();
+        $tipe_laundry = TipeLaundry::get();
+        $jenis_pencuci = JenisPencuci::get();
+
+        return view('transaksiCustomer', ['user' => $user, 'jenis_cucian' => $jenis_cucian, 'tipe_laundry' => $tipe_laundry, 'jenis_pencuci' => $jenis_pencuci]);
+    }
+
+    public function simpanCustomer(Request $request)
+    {
+        $data = [
+            'id_transaksi' => $request->id_transaksi,
+            'id_user' => $request->id_user,
+            'id_jenis_cucian' => $request->id_jenis_cucian,
+            'id_tipe_laundry' => $request->id_tipe_laundry,
+            'id_jenis_pencuci' => $request->id_jenis_pencuci,
+            'berat_cucian' => $request->berat_cucian,
+            'total_bayar' => $request->total_bayar,
+            'tanggal_cuci' => $request->tanggal_cuci,
+            'tanggal_selesai' => $request->tanggal_selesai,
+        ];
+
+        Transaksi::create($data);
+
+        return redirect()->route('home');
+    }
+
     public function edit($id)
     {
         $transaksi = Transaksi::find($id);

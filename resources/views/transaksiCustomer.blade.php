@@ -5,6 +5,16 @@
 @section('contents')
 
     @php
+        use App\Models\User;
+        use App\Models\JenisCucian;
+        use App\Models\TipeLaundry;
+        use App\Models\JenisPencuci;
+
+        $user = User::get();
+        $jenis_cucian = JenisCucian::get();
+        $tipe_laundry = TipeLaundry::get();
+        $jenis_pencuci = JenisPencuci::get();
+
         $id_transaksi = 'TR' . date('d');
     @endphp
 
