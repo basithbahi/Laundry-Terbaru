@@ -136,4 +136,45 @@ class TransaksiController extends Controller
         $pdf = PDF::loadview('transaksi.cetak', ['transaksi' => $transaksi]);
         return $pdf->stream();
     }
+
+    public function updateUser($id, Request $request)
+    {
+        $data = [
+            'id_transaksi' => $request->id_transaksi,
+            'id_user' => $request->id_user,
+            'id_jenis_cucian' => $request->id_jenis_cucian,
+            'id_tipe_laundry' => $request->id_tipe_laundry,
+            'id_jenis_pencuci' => $request->id_jenis_pencuci,
+            'berat_cucian' => $request->berat_cucian,
+        ];
+
+        Transaksi::find($id)->update($data);
+
+        return redirect()->route('home');
+    }
+
+    public function simpanUser(Request $request)
+    {
+        $data = [
+            'id_transaksi' => $request->id_transaksi,
+            'id_user' => $request->id_user,
+            'id_jenis_cucian' => $request->id_jenis_cucian,
+            'id_tipe_laundry' => $request->id_tipe_laundry,
+            'id_jenis_pencuci' => $request->id_jenis_pencuci,
+        ];
+
+        Transaksi::create($data);
+
+        return redirect()->route('home');
+    }
+
+    public function tambahUser()
+    {
+        $user = User::get();
+        $jenis_cucian = JenisCucian::get();
+        $tipe_laundry = TipeLaundry::get();
+        $jenis_pencuci = JenisPencuci::get();
+
+        return view('transaksi.transaksi_customer', ['user' => $user, 'jenis_cucian' => $jenis_cucian, 'tipe_laundry' => $tipe_laundry, 'jenis_pencuci' => $jenis_pencuci]);
+    }
 }

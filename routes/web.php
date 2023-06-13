@@ -117,6 +117,10 @@ Route::controller(TransaksiController::class)->prefix('transaksi')->group(functi
     Route::post('bayar/{id}', 'upload')->name('transaksi.bayar.upload');
     Route::get('search', 'search')->name('transaksi.search');
     Route::get('cetak/{id}', 'cetak')->name('transaksi.cetak');
+    Route::get('tambah', 'tambahUser')->name('transaksi.tambahUser');
+    Route::post('tambah', 'simpanUser')->name('transaksi.tambahUser.simpanUser');
+    Route::get('edit/{id}', 'editUser')->name('transaksi.editUser');
+    Route::post('edit/{id}', 'updateUser')->name('transaksi.tambahUser.updateUser');
 });
 
 Route::controller(RiwayatTransaksiController::class)->prefix('riwayat_transaksi')->group(function () {
