@@ -36,6 +36,8 @@
               <th>Jenis Pencuci</th>
               <th>Berat Cucian (Kg)</th>
               <th>Total Harga</th>
+              <th>Tanggal Cuci</th>
+              <th>Tanggal Selesai</th>
               <th>Aksi</th>
 				@endif
             </tr>
@@ -52,12 +54,14 @@
                 <td>{{ $row->jenis_pencuci->jenis_pencuci }}</td>
                 <td>{{ $row->berat_cucian}}</td>
                 <td>Rp{{ number_format(($row->berat_cucian * $row->jenis_cucian->harga) + ($row->berat_cucian * $row->tipe_laundry->harga) + ($row->berat_cucian * $row->jenis_pencuci->harga)) }}</td>
+                <td>{{ $row->tanggal_cuci }}</td>
+                <td>{{ $row->tanggal_selesai }}</td>
 				@if (auth()->user()->level == 'Admin')
                     <td>
                         <a href="{{ route('transaksi.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>
                         <a href="{{ route('transaksi.hapus', $row->id) }}" class="btn btn-danger"><i class="fas fa-trash-alt "></i></a>
                         <a href="{{ route('transaksi.bayar', $row->id) }}" class="btn btn-info"><i class="fas fa-money-bill "></i></a>
-                        <a href="{{ route('transaksi.cetak', $row->id) }}" class="btn btn-info"><i class="fas fa-money-bill "></i></a>
+                        <a href="{{ route('transaksi.cetak', $row->id) }}" class="btn btn-primary" target="_blank"><i class="fas fa-print "></i></a>
 
                     </td>
 				@endif

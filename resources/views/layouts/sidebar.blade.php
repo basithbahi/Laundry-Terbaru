@@ -7,7 +7,7 @@
         <div class="sidebar-brand-icon">
             <i class="fas fa-fw fa-water"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">LAUNDRY</div>
+        <div class="sidebar-brand-text mx-3">LAUNDRY QYALIN</div>
     </a>
 
     <!-- Divider -->
@@ -53,11 +53,6 @@
         <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Status Pencucian</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('metode_pembayaran') }}">
-            <i class="fas fa-fw fa-wallet"></i>
-            <span>Metode Pembayaran</span></a>
     </li>
 
     <!-- Divider -->

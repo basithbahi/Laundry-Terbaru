@@ -25,7 +25,7 @@
               <th>No</th>
               <th>ID Jenis Pencuci</th>
               <th>Jenis Pencuci</th>
-              <th>Harga</th>
+              <th>Harga (Kg)</th>
               <th>Aksi</th>
             </tr>
           </thead>
@@ -36,7 +36,7 @@
                 <th>{{ $no++ }}</th>
                 <td>{{ $row->id_jenis_pencuci }}</td>
                 <td>{{ $row->jenis_pencuci }}</td>
-                <td>{{ $row->harga }}</td>
+                <td>Rp {{ $row->harga }}</td>
                 <td>
                     <a href="{{ route('jenis_pencuci.edit', $row->id) }}" class="btn btn-warning">Edit &nbsp;&nbsp;&nbsp;<i class="fas fa-pen"></i></a>
                     <a href="{{ route('jenis_pencuci.hapus', $row->id) }}" class="btn btn-danger">Hapus &nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt "></i></a>

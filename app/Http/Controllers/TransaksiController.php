@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Models\JenisCucian;
 use App\Models\TipeLaundry;
 use App\Models\JenisPencuci;
-use App\Models\MetodePembayaran;
 use App\Models\RiwayatTransaksi;
 use App\Http\Controllers\Exception;
 use Exception as GlobalException;
@@ -50,6 +49,9 @@ class TransaksiController extends Controller
             'id_tipe_laundry' => $request->id_tipe_laundry,
             'id_jenis_pencuci' => $request->id_jenis_pencuci,
             'berat_cucian' => $request->berat_cucian,
+            'total_bayar' => $request->total_bayar,
+            'tanggal_cuci' => $request->tanggal_cuci,
+            'tanggal_selesai' => $request->tanggal_selesai,
         ];
 
         Transaksi::create($data);
@@ -78,6 +80,9 @@ class TransaksiController extends Controller
             'id_tipe_laundry' => $request->id_tipe_laundry,
             'id_jenis_pencuci' => $request->id_jenis_pencuci,
             'berat_cucian' => $request->berat_cucian,
+            'total_bayar' => $request->total_bayar,
+            'tanggal_cuci' => $request->tanggal_cuci,
+            'tanggal_selesai' => $request->tanggal_selesai,
         ];
 
         Transaksi::find($id)->update($data);
@@ -95,9 +100,8 @@ class TransaksiController extends Controller
     public function bayar($id)
     {
         $transaksi = Transaksi::find($id);
-        $metode_pembayaran = MetodePembayaran::find($id);
 
-        return view('transaksi.bayar', ['transaksi' => $transaksi, 'metode_pembayaran' => $metode_pembayaran]);
+        return view('transaksi.bayar', ['transaksi' => $transaksi]);
     }
 
     public function upload(Request $request)
@@ -105,7 +109,6 @@ class TransaksiController extends Controller
         $data = [
             'id_riwayat_transaksi' => $request->id_riwayat_transaksi,
             'id_transaksi' => $request->id_transaksi,
-            'metode_pembayaran' => $request->metode_pembayaran,
             'total_bayar' => $request->total_bayar,
         ];
 
@@ -120,19 +123,29 @@ class TransaksiController extends Controller
 
         if ($query) {
             $data = Transaksi::with('user', 'jenis_cucian', 'tipe_laundry', 'jenis_pencuci')
-                ->where('id_transaksi', 'like', "%$query%")
-                ->orWhere('nama_user', 'like', "%$query%")
-                ->orderBy('id_transaksi', 'asc')
-                ->paginate(10);
+                ->whereHas('user', function ($q) use ($query) {
+                    $q->where('nama', 'LIKE', '%' . $query . '%');
+                })
+                ->orWhereHas('jenis_cucian', function ($q) use ($query) {
+                    $q->where('jenis_cucian', 'LIKE', '%' . $query . '%');
+                })
+                ->orWhereHas('tipe_laundry', function ($q) use ($query) {
+                    $q->where('tipe_laundry', 'LIKE', '%' . $query . '%');
+                })
+                ->orWhereHas('jenis_pencuci', function ($q) use ($query) {
+                    $q->where('jenis_pencuci', 'LIKE', '%' . $query . '%');
+                })
+                ->get();
         } else {
-            $data = Transaksi::with('user', 'jenis_cucian', 'tipe_laundry', 'jenis_pencuci')->get();
+            $data = Transaksi::get();
         }
 
-        return view('transaksi.index', ['data' => $data, 'query' => $query]);
+        return view('transaksi.index', ['data' => $data]);
     }
-    public function cetak(Request $request)
+
+    public function cetak($id)
     {
-        $transaksi =  Transaksi::all();
+        $transaksi =  Transaksi::where('id', $id)->get();
         $pdf = PDF::loadview('transaksi.cetak', ['transaksi' => $transaksi]);
         return $pdf->stream();
     }

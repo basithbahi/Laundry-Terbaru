@@ -4,6 +4,10 @@
 
 @section('contents')
 
+    @php
+        $id_transaksi = 'TR' . date('d');
+    @endphp
+
     <form
         action="{{ isset($transaksi) ? route('transaksi.tambah.update', $transaksi->id) : route('transaksi.tambah.simpan') }}"
         method="post" enctype="multipart/form-data">
@@ -19,7 +23,7 @@
                         <div class="form-group">
                             <label for="id_transaksi">ID Transaksi</label>
                             <input type="text" class="form-control" id="id_transaksi" name="id_transaksi"
-                                value="{{ isset($transaksi) ? $transaksi->id_transaksi : '' }}">
+                                value="{{ isset($transaksi) ? $transaksi->id_transaksi : $id_transaksi }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="id_user">User</label>
@@ -73,12 +77,22 @@
                             <label for="berat_cucian">Berat Cucian (Kg)</label>
                             <input type="text" class="form-control" id="berat_cucian" name="berat_cucian"
                                 value="{{ isset($transaksi) ? $transaksi->berat_cucian : '' }}">
-                    </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggal_cuci">Tanggal Cuci</label>
+                            <input type="date" class="form-control" id="tanggal_cuci" name="tanggal_cuci"
+                                value="{{ date('Y-m-d') }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggal_selesai">Tanggal Selesai</label>
+                            <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </form>
+
 @endsection

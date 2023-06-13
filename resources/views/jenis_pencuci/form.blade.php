@@ -16,17 +16,12 @@
               <label for="id_jenis_pencuci">ID Jenis Pencuci</label>
               <input type="text" class="form-control" id="id_jenis_pencuci" name="id_jenis_pencuci" value="{{ isset($jenis_pencuci) ? $jenis_pencuci->id_jenis_pencuci : '' }}">
             </div>
-            <div class="form-group">
+              <div class="form-group">
                 <label for="jenis_pencuci">Jenis Pencuci</label>
-                <select class="form-control" id="jenis_pencuci" name="jenis_pencuci">
-                  <option value="">-- Pilih Jenis Pencuci --</option>
-                  <option value="Detergen + Pewangi" {{ isset($jenis_pencuci) && $jenis_pencuci->jenis_pencuci == 'Detergen + Pewangi' ? 'selected' : '' }}>Detergen + Pewangi</option>
-                  <option value="Detergen" {{ isset($jenis_pencuci) && $jenis_pencuci->jenis_pencuci == 'Detergen' ? 'selected' : '' }}>Detergen</option>
-                  <option value="Bleach" {{ isset($jenis_pencuci) && $jenis_pencuci->jenis_pencuci == 'Bleach' ? 'selected' : '' }}>Bleach</option>
-                </select>
+                <input type="text" class="form-control" id="jenis_pencuci" name="jenis_pencuci" value="{{ isset($jenis_pencuci) ? $jenis_pencuci->jenis_pencuci : '' }}">
               </div>
               <div class="form-group">
-                <label for="harga">Harga</label>
+                <label for="harga">Harga (Kg)</label>
                 <input type="text" class="form-control" id="harga" name="harga" value="{{ isset($jenis_pencuci) ? $jenis_pencuci->harga : '' }}">
               </div>
           </div>

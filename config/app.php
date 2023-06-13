@@ -154,9 +154,9 @@ return [
     |
     */
 
-        'providers' => [
+    'providers' => [
 
-            
+
         /*
          * Laravel Framework Service Providers...
          */
@@ -195,11 +195,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
-    
-            Barryvdh\DomPDF\ServiceProvider::class,
 
-            
     ],
 
     /*
@@ -217,7 +215,8 @@ return [
         'aliases' => [
 
             'PDF' => Barryvdh\DomPDF\Facade::class,
-            ]
+
+        ]
     ])->toArray(),
 
 ];

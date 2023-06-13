@@ -25,7 +25,7 @@
               <th>No</th>
               <th>ID Tipe Laundry</th>
               <th>Tipe Laundry</th>
-              <th>Harga</th>
+              <th>Harga (Kg)</th>
               <th>Aksi</th>
             </tr>
           </thead>
@@ -36,7 +36,7 @@
                 <th>{{ $no++ }}</th>
                 <td>{{ $row->id_tipe_laundry }}</td>
                 <td>{{ $row->tipe_laundry }}</td>
-                <td>{{ $row->harga }}</td>
+                <td>Rp {{ $row->harga }}</td>
                 <td>
                     <a href="{{ route('tipe_laundry.edit', $row->id) }}" class="btn btn-warning">Edit &nbsp;&nbsp;&nbsp;<i class="fas fa-pen"></i></a>
                     <a href="{{ route('tipe_laundry.hapus', $row->id) }}" class="btn btn-danger">Hapus &nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt "></i></a>

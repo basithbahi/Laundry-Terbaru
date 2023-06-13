@@ -18,7 +18,10 @@ return new class extends Migration
             $table->foreignId('id_jenis_cucian')->references('id')->on('jenis_cucian');
             $table->foreignId('id_tipe_laundry')->references('id')->on('tipe_laundry');
             $table->foreignId('id_jenis_pencuci')->references('id')->on('jenis_pencuci');
-            $table->double('berat_cucian');
+            $table->double('berat_cucian')->nullable();
+            $table->double('total_bayar')->nullable();
+            $table->date('tanggal_cuci')->nullable();
+            $table->date('tanggal_selesai')->nullable();
             $table->timestamps();
         });
     }

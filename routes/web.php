@@ -73,15 +73,6 @@ Route::controller(TipeLaundryController::class)->prefix('tipe_laundry')->group(f
     Route::get('search', 'search')->name('tipe_laundry.search');
 });
 
-Route::controller(MetodePembayaranController::class)->prefix('metode_pembayaran')->group(function () {
-    Route::get('', 'index')->name('metode_pembayaran');
-    Route::get('tambah', 'tambah')->name('metode_pembayaran.tambah');
-    Route::post('tambah', 'simpan')->name('metode_pembayaran.tambah.simpan');
-    Route::get('edit/{id}', 'edit')->name('metode_pembayaran.edit');
-    Route::post('edit/{id}', 'update')->name('metode_pembayaran.tambah.update');
-    Route::get('hapus/{id}', 'hapus')->name('metode_pembayaran.hapus');
-    Route::get('search', 'search')->name('metode_pembayaran.search');
-});
 
 Route::controller(UserController::class)->prefix('user')->group(function () {
     Route::get('', 'index')->name('user');
@@ -107,9 +98,11 @@ Route::controller(AdminController::class)->prefix('admin')->group(function () {
 
 Route::controller(TransaksiController::class)->prefix('transaksi')->group(function () {
     Route::get('', 'index')->name('transaksi');
-    Route::get('cek', 'cekTransaksi')->name('transaksi');
+    Route::get('cek', 'cekTransaksi')->name('transaksi.cek');
     Route::get('tambah', 'tambah')->name('transaksi.tambah');
     Route::post('tambah', 'simpan')->name('transaksi.tambah.simpan');
+    Route::get('tambahCustomer', 'tambahCustomer')->name('transaksi.tambahCustomer');
+    Route::post('tambahCustomer', 'simpanCustomer')->name('transaksi.tambahCustomer.simpanCustomer');
     Route::get('edit/{id}', 'edit')->name('transaksi.edit');
     Route::post('edit/{id}', 'update')->name('transaksi.tambah.update');
     Route::get('hapus/{id}', 'hapus')->name('transaksi.hapus');
@@ -133,9 +126,11 @@ Route::middleware('auth')->group(function () {
     Route::get('home', function () {
         return view('home');
     })->name('home');
-    Route::get('transaksi_customer', function () {
-        return view('transaksi_customer');
-    })->name('transaksi_customer');
+
+    Route::get('transaksiCustomer', function () {
+        return view('transaksiCustomer');
+    })->name('transaksiCustomer');
+
     Route::get('profile', function () {
         return view('profile');
     })->name('profile');

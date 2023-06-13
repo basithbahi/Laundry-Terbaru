@@ -17,16 +17,11 @@
               <input type="text" class="form-control" id="id_jenis_cucian" name="id_jenis_cucian" value="{{ isset($jenis_cucian) ? $jenis_cucian->id_jenis_cucian : '' }}">
             </div>
             <div class="form-group">
-                <label for="jenis_cucian">Jenis Pencuci</label>
-                <select class="form-control" id="jenis_cucian" name="jenis_cucian">
-                  <option value="">-- Pilih Jenis Cucian --</option>
-                  <option value="Selimut" {{ isset($jenis_cucian) && $jenis_cucian->jenis_cucian == 'Selimut' ? 'selected' : '' }}>Selimut</option>
-                  <option value="Pakaian" {{ isset($jenis_cucian) && $jenis_cucian->jenis_cucian == 'Pakaian' ? 'selected' : '' }}>Pakaian</option>
-                  <option value="Sprai" {{ isset($jenis_cucian) && $jenis_cucian->jenis_cucian == 'Sprai' ? 'selected' : '' }}>Sprai</option>
-                </select>
+                <label for="jenis_cucian">Jenis Cucian</label>
+                <input type="text" class="form-control" id="jenis_cucian" name="jenis_cucian" value="{{ isset($jenis_cucian) ? $jenis_cucian->jenis_cucian : '' }}">
               </div>
               <div class="form-group">
-                <label for="harga">Harga</label>
+                <label for="harga">Harga (Kg)</label>
                 <input type="text" class="form-control" id="harga" name="harga" value="{{ isset($jenis_cucian) ? $jenis_cucian->harga : '' }}">
               </div>
           </div>

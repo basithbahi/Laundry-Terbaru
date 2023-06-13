@@ -16,17 +16,13 @@
               <label for="id_tipe_laundry">ID Tipe Laundry</label>
               <input type="text" class="form-control" id="id_tipe_laundry" name="id_tipe_laundry" value="{{ isset($tipe_laundry) ? $tipe_laundry->id_tipe_laundry : '' }}">
             </div>
-            <div class="form-group">
+
+              <div class="form-group">
                 <label for="tipe_laundry">Tipe Laundry</label>
-                <select class="form-control" id="tipe_laundry" name="tipe_laundry">
-                  <option value="">-- Pilih Tipe Laundry --</option>
-                  <option value="Cuci Basah" {{ isset($tipe_laundry) && $tipe_laundry->tipe_laundry == 'Cuci Basah' ? 'selected' : '' }}>Cuci Basah</option>
-                  <option value="Cuci Kering" {{ isset($tipe_laundry) && $tipe_laundry->tipe_laundry == 'Cuci Kering' ? 'selected' : '' }}>Cuci Kering</option>
-                  <option value="Cuci Setrika" {{ isset($tipe_laundry) && $tipe_laundry->tipe_laundry == 'Cuci Setrika' ? 'selected' : '' }}>Cuci Setrika</option>
-                </select>
+                <input type="text" class="form-control" id="tipe_laundry" name="tipe_laundry" value="{{ isset($tipe_laundry) ? $tipe_laundry->tipe_laundry : '' }}">
               </div>
               <div class="form-group">
-                <label for="harga">Harga</label>
+                <label for="harga">Harga (Kg)</label>
                 <input type="text" class="form-control" id="harga" name="harga" value="{{ isset($tipe_laundry) ? $tipe_laundry->harga : '' }}">
               </div>
           </div>
