@@ -54,10 +54,11 @@ class TransaksiController extends Controller
             'tanggal_selesai' => $request->tanggal_selesai,
         ];
 
-        Transaksi::create($data);
+        $transaksi = Transaksi::create($data);
 
-        return redirect()->route('transaksi');
+        return redirect()->route('transaksi.index');
     }
+
 
     public function tambahCustomer()
     {
