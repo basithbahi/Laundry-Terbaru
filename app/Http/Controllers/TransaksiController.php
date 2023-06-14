@@ -37,8 +37,26 @@ class TransaksiController extends Controller
         $tipe_laundry = TipeLaundry::get();
         $jenis_pencuci = JenisPencuci::get();
 
-        return view('transaksi.form', ['user' => $user, 'jenis_cucian' => $jenis_cucian, 'tipe_laundry' => $tipe_laundry, 'jenis_pencuci' => $jenis_pencuci]);
+        $id_transaksi = session('id_transaksi');
+        $id_user = session('id_user');
+
+        $transaksi = null;
+        if ($id_transaksi && $id_user) {
+            $transaksi = new Transaksi();
+            $transaksi->id_transaksi = $id_transaksi;
+            $transaksi->id_user = $id_user;
+        }
+
+        return view('transaksi.form', [
+            'user' => $user,
+            'jenis_cucian' => $jenis_cucian,
+            'tipe_laundry' => $tipe_laundry,
+            'jenis_pencuci' => $jenis_pencuci,
+            'transaksi' => $transaksi
+        ]);
     }
+
+
 
     public function simpan(Request $request)
     {
@@ -52,12 +70,18 @@ class TransaksiController extends Controller
             'total_bayar' => $request->total_bayar,
             'tanggal_cuci' => $request->tanggal_cuci,
             'tanggal_selesai' => $request->tanggal_selesai,
+            'catatan' => $request->catatan,
         ];
 
         $transaksi = Transaksi::create($data);
 
+        if ($request->has('pesan_lagi') && $request->pesan_lagi === 'true') {
+            return redirect()->route('transaksi.tambah')->with('id_transaksi', $request->id_transaksi)->with('id_user', $request->id_user);
+        }
+
         return redirect()->route('transaksi.index');
     }
+
 
 
     public function tambahCustomer()
@@ -82,6 +106,7 @@ class TransaksiController extends Controller
             'total_bayar' => $request->total_bayar,
             'tanggal_cuci' => $request->tanggal_cuci,
             'tanggal_selesai' => $request->tanggal_selesai,
+            'catatan' => $request->catatan,
         ];
 
         Transaksi::create($data);
@@ -113,6 +138,7 @@ class TransaksiController extends Controller
             'total_bayar' => $request->total_bayar,
             'tanggal_cuci' => $request->tanggal_cuci,
             'tanggal_selesai' => $request->tanggal_selesai,
+            'catatan' => $request->catatan,
         ];
 
         Transaksi::find($id)->update($data);

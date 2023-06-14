@@ -38,6 +38,7 @@
               <th>Total Harga</th>
               <th>Tanggal Cuci</th>
               <th>Tanggal Selesai</th>
+              <th>Catatan</th>
               <th>Aksi</th>
 				@endif
             </tr>
@@ -56,6 +57,7 @@
                 <td>Rp{{ number_format(($row->berat_cucian * $row->jenis_cucian->harga) + ($row->berat_cucian * $row->tipe_laundry->harga) + ($row->berat_cucian * $row->jenis_pencuci->harga)) }}</td>
                 <td>{{ $row->tanggal_cuci }}</td>
                 <td>{{ $row->tanggal_selesai }}</td>
+                <td>{{ $row->catatan }}</td>
 				@if (auth()->user()->level == 'Admin')
                     <td>
                         <a href="{{ route('transaksi.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>

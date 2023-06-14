@@ -28,8 +28,6 @@
                             {{ isset($transaksi) ? 'Form Edit Transaksi' : 'Form Tambah Transaksi' }}</h6>
                     </div>
                     <div class="card-body">
-
-                        <div class="card-body">
                             <div class="form-group">
                                 <label for="id_transaksi">ID Transaksi</label>
                                 <input type="text" class="form-control" id="id_transaksi" name="id_transaksi"
@@ -82,11 +80,16 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
 
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
+                            <div class="form-group">
+                                <label for="catatan">Catatan</label>
+                                <textarea class="form-control" id="catatan" name="catatan" rows="3">{{ isset($transaksi) ? $transaksi->catatan : '' }}</textarea>
+                            </div>
+                    </div>
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
 
                     </div>
                 </div>

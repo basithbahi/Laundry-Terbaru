@@ -12,10 +12,8 @@
         }
     @endphp
 
-    <form
-        action="{{ isset($transaksi) ? route('transaksi.tambah.update', $transaksi->id) : route('transaksi.tambah.simpan') }}"
-        method="post" enctype="multipart/form-data">
-        @csrf
+<form action="{{ route('transaksi.tambah.simpan') }}" method="post" enctype="multipart/form-data" id="transaksi-form">
+    @csrf
         <div class="row">
             <div class="col-12">
                 <div class="card shadow mb-4">
@@ -26,16 +24,14 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="id_transaksi">ID Transaksi</label>
-                            <input type="text" class="form-control" id="id_transaksi" name="id_transaksi"
-                                value="{{ isset($transaksi) ? $transaksi->id_transaksi : $id_transaksi }}" readonly>
+                            <input type="text" class="form-control" id="id_transaksi" name="id_transaksi" value="{{ isset($transaksi) ? $transaksi->id_transaksi : $id_transaksi }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="id_user">User</label>
                             <select name="id_user" id="id_user" class="custom-select">
-                                <option value="" selected disabled hidden>-- Pilih User--</option>
+                                <option value="" selected disabled hidden>-- Pilih User --</option>
                                 @foreach ($user as $row)
-                                    <option value="{{ $row->id }}"
-                                        {{ isset($transaksi) ? ($transaksi->id_user == $row->id ? 'selected' : '') : '' }}>
+                                    <option value="{{ $row->id }}" {{ isset($transaksi) ? ($transaksi->id_user == $row->id ? 'selected' : '') : '' }}>
                                         {{ $row->nama }}
                                     </option>
                                 @endforeach
@@ -46,8 +42,7 @@
                             <select name="id_jenis_cucian" id="id_jenis_cucian" class="custom-select">
                                 <option value="" selected disabled hidden>-- Pilih Jenis Cucian --</option>
                                 @foreach ($jenis_cucian as $row)
-                                    <option value="{{ $row->id }}"
-                                        {{ isset($transaksi) ? ($transaksi->id_jenis_cucian == $row->id ? 'selected' : '') : '' }}>
+                                    <option value="{{ $row->id }}" {{ isset($transaksi) ? ($transaksi->id_jenis_cucian == $row->id ? 'selected' : '') : '' }}>
                                         {{ $row->jenis_cucian }}
                                     </option>
                                 @endforeach
@@ -58,8 +53,7 @@
                             <select name="id_tipe_laundry" id="id_tipe_laundry" class="custom-select">
                                 <option value="" selected disabled hidden>-- Pilih Tipe Laundry --</option>
                                 @foreach ($tipe_laundry as $row)
-                                    <option value="{{ $row->id }}"
-                                        {{ isset($transaksi) ? ($transaksi->id_tipe_laundry == $row->id ? 'selected' : '') : '' }}>
+                                    <option value="{{ $row->id }}" {{ isset($transaksi) ? ($transaksi->id_tipe_laundry == $row->id ? 'selected' : '') : '' }}>
                                         {{ $row->tipe_laundry }}
                                     </option>
                                 @endforeach
@@ -78,7 +72,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="berat_cucian">Berat Cucian (Kg)</label>
+                            <label for="berat_cucian">Berat (Kg)</label>
                             <input type="text" class="form-control" id="berat_cucian" name="berat_cucian"
                                 value="{{ isset($transaksi) ? $transaksi->berat_cucian : '' }}">
                         </div>
@@ -91,12 +85,18 @@
                             <label for="tanggal_selesai">Tanggal Selesai</label>
                             <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
                         </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        <div class="form-group">
+                            <label for="catatan">Catatan</label>
+                            <textarea class="form-control" id="catatan" name="catatan" rows="3">{{ isset($transaksi) ? $transaksi->catatan : '' }}</textarea>
                         </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <button type="submit" class="btn btn-primary" name="pesan_lagi" value="true">Pesan Lagi</button>
                     </div>
                 </div>
             </div>
+        </div>
     </form>
-
 @endsection
+
