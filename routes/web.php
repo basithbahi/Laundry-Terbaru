@@ -129,8 +129,6 @@ Route::controller(RiwayatTransaksiController::class)->prefix('riwayat_transaksi'
     Route::get('search', 'search')->name('riwayat_transaksi.search');
 });
 
-Route::get('/', [TransaksiController::class, 'index'])->name('transaksi.index');
-
 Route::middleware('auth')->group(function () {
     Route::get('home', function () {
         return view('home');

@@ -67,7 +67,6 @@ class TransaksiController extends Controller
             'id_tipe_laundry' => $request->id_tipe_laundry,
             'id_jenis_pencuci' => $request->id_jenis_pencuci,
             'berat_cucian' => $request->berat_cucian,
-            'total_bayar' => $request->total_bayar,
             'tanggal_cuci' => $request->tanggal_cuci,
             'tanggal_selesai' => $request->tanggal_selesai,
             'catatan' => $request->catatan,
@@ -79,10 +78,8 @@ class TransaksiController extends Controller
             return redirect()->route('transaksi.tambah')->with('id_transaksi', $request->id_transaksi)->with('id_user', $request->id_user);
         }
 
-        return redirect()->route('transaksi.index');
+        return redirect()->route('transaksi');
     }
-
-
 
     public function tambahCustomer()
     {
@@ -91,8 +88,26 @@ class TransaksiController extends Controller
         $tipe_laundry = TipeLaundry::get();
         $jenis_pencuci = JenisPencuci::get();
 
-        return view('transaksiCustomer', ['user' => $user, 'jenis_cucian' => $jenis_cucian, 'tipe_laundry' => $tipe_laundry, 'jenis_pencuci' => $jenis_pencuci]);
+        $id_transaksi = session('id_transaksi');
+        $id_user = session('id_user');
+
+        $transaksi = null;
+        if ($id_transaksi && $id_user) {
+            $transaksi = new Transaksi();
+            $transaksi->id_transaksi = $id_transaksi;
+            $transaksi->id_user = $id_user;
+        }
+
+        return view('transaksiCustomer', [
+            'user' => $user,
+            'jenis_cucian' => $jenis_cucian,
+            'tipe_laundry' => $tipe_laundry,
+            'jenis_pencuci' => $jenis_pencuci,
+            'transaksi' => $transaksi
+        ]);
     }
+
+
 
     public function simpanCustomer(Request $request)
     {
@@ -103,13 +118,16 @@ class TransaksiController extends Controller
             'id_tipe_laundry' => $request->id_tipe_laundry,
             'id_jenis_pencuci' => $request->id_jenis_pencuci,
             'berat_cucian' => $request->berat_cucian,
-            'total_bayar' => $request->total_bayar,
             'tanggal_cuci' => $request->tanggal_cuci,
             'tanggal_selesai' => $request->tanggal_selesai,
             'catatan' => $request->catatan,
         ];
 
-        Transaksi::create($data);
+        $transaksi = Transaksi::create($data);
+
+        if ($request->has('pesan_lagi') && $request->pesan_lagi === 'true') {
+            return redirect()->route('transaksi.tambahCustomer')->with('id_transaksi', $request->id_transaksi)->with('id_user', $request->id_user);
+        }
 
         return redirect()->route('home');
     }
@@ -135,7 +153,6 @@ class TransaksiController extends Controller
             'id_tipe_laundry' => $request->id_tipe_laundry,
             'id_jenis_pencuci' => $request->id_jenis_pencuci,
             'berat_cucian' => $request->berat_cucian,
-            'total_bayar' => $request->total_bayar,
             'tanggal_cuci' => $request->tanggal_cuci,
             'tanggal_selesai' => $request->tanggal_selesai,
             'catatan' => $request->catatan,
@@ -165,7 +182,6 @@ class TransaksiController extends Controller
         $data = [
             'id_riwayat_transaksi' => $request->id_riwayat_transaksi,
             'id_transaksi' => $request->id_transaksi,
-            'total_bayar' => $request->total_bayar,
         ];
 
         RiwayatTransaksi::create($data);

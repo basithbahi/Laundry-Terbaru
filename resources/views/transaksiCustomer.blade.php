@@ -85,11 +85,13 @@
                                 <label for="catatan">Catatan</label>
                                 <textarea class="form-control" id="catatan" name="catatan" rows="3">{{ isset($transaksi) ? $transaksi->catatan : '' }}</textarea>
                             </div>
-                    </div>
 
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">Simpan</button>
+                            <button type="submit" class="btn btn-primary" name="pesan_lagi" value="true">Pesan Lagi</button>
+                        </div>
 
                     </div>
                 </div>
