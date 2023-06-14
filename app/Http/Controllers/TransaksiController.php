@@ -215,9 +215,9 @@ class TransaksiController extends Controller
         return view('transaksi.index', ['data' => $data]);
     }
 
-    public function cetak($id)
+    public function cetak($id_transaksi)
     {
-        $transaksi =  Transaksi::where('id', $id)->get();
+        $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->get();
         $pdf = PDF::loadview('transaksi.cetak', ['transaksi' => $transaksi]);
         return $pdf->stream();
     }
