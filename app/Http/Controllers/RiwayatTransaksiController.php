@@ -2,89 +2,234 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use Illuminate\Http\Request;
-use App\Models\RiwayatTransaksi;
 use App\Models\Transaksi;
-// use App\Models\MetodePembayaran;
+use App\Models\User;
+use App\Models\JenisCucian;
+use App\Models\TipeLaundry;
+use App\Models\JenisPencuci;
+use App\Models\RiwayatTransaksi;
 use App\Http\Controllers\Exception;
 use Exception as GlobalException;
 use FFI\Exception as FFIException;
 
-// class RiwayatTransaksiController extends Controller
-// {
-//     public function index()
-//     {
-//         $riwayat_transaksi = RiwayatTransaksi::get();
+class RiwayatTransaksiController extends Controller
+{
+    public function index()
+    {
+        $transaksi = Transaksi::get();
 
-//         return view('riwayat_transaksi.index', ['data' => $riwayat_transaksi]);
-//     }
+        return view('riwayat_transaksi.index', ['data' => $transaksi]);
+    }
 
-//     public function tambah()
-//     {
-//         $transaksi = Transaksi::get();
-//         $metode_pembayaran = MetodePembayaran::get();
+    public function cekTransaksi()
+    {
+        $transaksi = Transaksi::get();
 
-//         return view('riwayat_transaksi.form', ['transaksi' => $transaksi, 'metode_pembayaran' => $metode_pembayaran]);
-//     }
+        return view('cekTransaksi', ['data' => $transaksi]);
+    }
 
-//     public function simpan(Request $request)
-//     {
-//         $data = [
-//             'id_riwayat_transaksi' => $request->id_riwayat_transaksi,
-//             'id_transaksi' => $request->id_transaksi,
-//             'metode_pembayaran' => $request->metode_pembayaran,
-//             'total_bayar' => $request->total_bayar,
-//         ];
+    public function tambah()
+    {
+        $user = User::get();
+        $jenis_cucian = JenisCucian::get();
+        $tipe_laundry = TipeLaundry::get();
+        $jenis_pencuci = JenisPencuci::get();
 
-//         RiwayatTransaksi::create($data);
+        $id_transaksi = session('id_transaksi');
+        $id_user = session('id_user');
 
-//         return redirect()->route('riwayat_transaksi');
-//     }
+        $transaksi = null;
+        if ($id_transaksi && $id_user) {
+            $transaksi = new Transaksi();
+            $transaksi->id_transaksi = $id_transaksi;
+            $transaksi->id_user = $id_user;
+        }
 
-//     public function edit($id)
-//     {
-//         $riwayat_transaksi = RiwayatTransaksi::find($id);
-//         $transaksi = Transaksi::find($id);
-//         $metode_pembayaran = MetodePembayaran::find($id);
+        return view('riwayat_transaksi.form', [
+            'user' => $user,
+            'jenis_cucian' => $jenis_cucian,
+            'tipe_laundry' => $tipe_laundry,
+            'jenis_pencuci' => $jenis_pencuci,
+            'transaksi' => $transaksi
+        ]);
+    }
 
-//         return view('riwayat_transaksi.form', ['riwayat_transaksi' => $riwayat_transaksi, 'transaksi' => $transaksi, 'metode_pembayaran' => $metode_pembayaran]);
-//     }
 
-//     public function update($id, Request $request)
-//     {
-//         $data = [
-//             'id_riwayat_transaksi' => $request->id_riwayat_transaksi,
-//             'id_transaksi' => $request->id_transaksi,
-//             'metode_pembayaran' => $request->metode_pembayaran,
-//             'total_bayar' => $request->total_bayar,
-//         ];
 
-//         RiwayatTransaksi::find($id)->update($data);
+    public function simpan(Request $request)
+    {
+        $data = [
+            'id_transaksi' => $request->id_transaksi,
+            'id_user' => $request->id_user,
+            'id_jenis_cucian' => $request->id_jenis_cucian,
+            'id_tipe_laundry' => $request->id_tipe_laundry,
+            'id_jenis_pencuci' => $request->id_jenis_pencuci,
+            'berat_cucian' => $request->berat_cucian,
+            'tanggal_cuci' => $request->tanggal_cuci,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'catatan' => $request->catatan,
+        ];
 
-//         return redirect()->route('riwayat_transaksi');
-//     }
+        $transaksi = Transaksi::create($data);
 
-//     public function hapus($id)
-//     {
-//         RiwayatTransaksi::find($id)->delete();
+        if ($request->has('pesan_lagi') && $request->pesan_lagi === 'true') {
+            return redirect()->route('transaksi.tambah')->with('id_transaksi', $request->id_transaksi)->with('id_user', $request->id_user);
+        }
 
-//         return redirect()->route('riwayat_transaksi');
-//     }
+        return redirect()->route('riwayat_transaksi');
+    }
 
-//     public function search(Request $request)
-//     {
-//         $query = $request->input('query');
+    public function tambahCustomer()
+    {
+        $user = User::get();
+        $jenis_cucian = JenisCucian::get();
+        $tipe_laundry = TipeLaundry::get();
+        $jenis_pencuci = JenisPencuci::get();
 
-//         if ($query) {
-//             $data = RiwayatTransaksi::with('transaksi', 'user', 'jenis_cucian', 'tipe_laundry', 'jenis_pencuci')
-//                 ->where('id_riwayat_transaksi', 'like', "%$query%")
-//                 ->orWhere('id_transaksi', 'like', "%$query%")
-//                 ->orderBy('id_riwayat_transaksi', 'asc')
-//                 ->paginate(10);
-//         } else {
-//             $data = RiwayatTransaksi::with('transaksi', 'metode_pembayaran')->get();
-//         }
+        $id_transaksi = session('id_transaksi');
+        $id_user = session('id_user');
 
-//         return view('riwayat_transaksi.index', ['data' => $data, 'query' => $query]);
-//     }
-// }
+        $transaksi = null;
+        if ($id_transaksi && $id_user) {
+            $transaksi = new Transaksi();
+            $transaksi->id_transaksi = $id_transaksi;
+            $transaksi->id_user = $id_user;
+        }
+
+        return view('transaksiCustomer', [
+            'user' => $user,
+            'jenis_cucian' => $jenis_cucian,
+            'tipe_laundry' => $tipe_laundry,
+            'jenis_pencuci' => $jenis_pencuci,
+            'transaksi' => $transaksi
+        ]);
+    }
+
+
+
+    public function simpanCustomer(Request $request)
+    {
+        $data = [
+            'id_transaksi' => $request->id_transaksi,
+            'id_user' => $request->id_user,
+            'id_jenis_cucian' => $request->id_jenis_cucian,
+            'id_tipe_laundry' => $request->id_tipe_laundry,
+            'id_jenis_pencuci' => $request->id_jenis_pencuci,
+            'berat_cucian' => $request->berat_cucian,
+            'tanggal_cuci' => $request->tanggal_cuci,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'catatan' => $request->catatan,
+        ];
+
+        $transaksi = Transaksi::create($data);
+
+        if ($request->has('pesan_lagi') && $request->pesan_lagi === 'true') {
+            return redirect()->route('transaksi.tambahCustomer')->with('id_transaksi', $request->id_transaksi)->with('id_user', $request->id_user);
+        }
+
+        return redirect()->route('home');
+    }
+
+    public function edit($id)
+    {
+        $transaksi = Transaksi::find($id);
+        $user = User::get();
+        $jenis_cucian = JenisCucian::get();
+        $tipe_laundry = TipeLaundry::get();
+        $jenis_pencuci = JenisPencuci::get();
+
+        return view('transaksi.form', ['transaksi' => $transaksi, 'user' => $user, 'jenis_cucian'
+        => $jenis_cucian, 'tipe_laundry' => $tipe_laundry, 'jenis_pencuci' => $jenis_pencuci]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $data = [
+            'id_transaksi' => $request->id_transaksi,
+            'id_user' => $request->id_user,
+            'id_jenis_cucian' => $request->id_jenis_cucian,
+            'id_tipe_laundry' => $request->id_tipe_laundry,
+            'id_jenis_pencuci' => $request->id_jenis_pencuci,
+            'berat_cucian' => $request->berat_cucian,
+            'tanggal_cuci' => $request->tanggal_cuci,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'catatan' => $request->catatan,
+        ];
+
+        Transaksi::find($id)->update($data);
+
+        return redirect()->route('riwayat_transaksi');
+    }
+
+    public function hapus($id)
+    {
+        Transaksi::find($id)->delete();
+
+        return redirect()->route('riwayat_transaksi');
+    }
+
+    public function bayar($id)
+    {
+        $transaksi = Transaksi::find($id);
+
+        return view('transaksi.bayar', ['transaksi' => $transaksi]);
+    }
+
+    public function upload(Request $request)
+    {
+        $data = [
+            'id_riwayat_transaksi' => $request->id_riwayat_transaksi,
+            'id_transaksi' => $request->id_transaksi,
+        ];
+
+        RiwayatTransaksi::create($data);
+
+        return redirect()->route('riwayat_transaksi');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        if ($query) {
+            $data = Transaksi::with('user', 'jenis_cucian', 'tipe_laundry', 'jenis_pencuci')
+                ->whereHas('user', function ($q) use ($query) {
+                    $q->where('nama', 'LIKE', '%' . $query . '%');
+                })
+                ->orWhereHas('jenis_cucian', function ($q) use ($query) {
+                    $q->where('jenis_cucian', 'LIKE', '%' . $query . '%');
+                })
+                ->orWhereHas('tipe_laundry', function ($q) use ($query) {
+                    $q->where('tipe_laundry', 'LIKE', '%' . $query . '%');
+                })
+                ->orWhereHas('jenis_pencuci', function ($q) use ($query) {
+                    $q->where('jenis_pencuci', 'LIKE', '%' . $query . '%');
+                })
+                ->get();
+        } else {
+            $data = Transaksi::get();
+        }
+
+        return view('riwayat_transaksi.index', ['data' => $data]);
+    }
+
+    public function cetak($id_transaksi)
+    {
+        $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->get();
+        $pdf = PDF::loadview('riwayat_transaksi.cetak', ['transaksi' => $transaksi]);
+        return $pdf->stream();
+    }
+
+    public function selesai($id)
+    {
+        $data = [
+            'status_pencucian' => 'SELESAI',
+        ];
+
+        Transaksi::find($id)->update($data);
+
+        return redirect()->route('riwayat_transaksi');
+    }
+}

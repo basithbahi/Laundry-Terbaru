@@ -41,6 +41,7 @@
                                 <th>Tanggal Cuci</th>
                                 <th>Tanggal Selesai</th>
                                 <th>Catatan</th>
+                                <th>Status Pencucian</th>
                                 <th>Aksi</th>
                         @endif
                         </tr>
@@ -48,6 +49,7 @@
                     <tbody>
                         @php($no = 1)
                         @foreach ($data as $row)
+                        @if ($row->status_pencucian === 'BELUM SELESAI')
                             <tr>
                                 <th>{{ $no++ }}</th>
                                 <td>{{ $row->id_transaksi }}</td>
@@ -61,6 +63,7 @@
                                 <td>{{ $row->tanggal_cuci }}</td>
                                 <td>{{ $row->tanggal_selesai }}</td>
                                 <td>{{ $row->catatan }}</td>
+                                <td>{{ $row->status_pencucian }}</td>
                                 @if (auth()->user()->level == 'Admin')
                                     <td>
                                         <a href="{{ route('transaksi.edit', $row->id) }}" class="btn btn-warning"><i
@@ -71,12 +74,13 @@
                                                 class="fas fa-money-bill "></i></a>
                                         @if ($loop->first || $row->id_transaksi != $data[$loop->index - 1]->id_transaksi)
                                         <a href="{{ route('transaksi.cetak', $row->id_transaksi) }}" class="btn btn-primary" target="_blank"><i class="fas fa-print"></i></a>
-
                                         @endif
+                                        <a href="{{ route('transaksi.selesai', $row->id) }}">Pencucian Selesai</i></a>
 
                                     </td>
                                 @endif
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

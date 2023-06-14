@@ -221,4 +221,15 @@ class TransaksiController extends Controller
         $pdf = PDF::loadview('transaksi.cetak', ['transaksi' => $transaksi]);
         return $pdf->stream();
     }
+
+    public function selesai($id)
+    {
+        $data = [
+            'status_pencucian' => 'SELESAI',
+        ];
+
+        Transaksi::find($id)->update($data);
+
+        return redirect()->route('transaksi');
+    }
 }
