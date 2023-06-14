@@ -35,14 +35,16 @@
           <tbody>
             @php($no = 1)
             @foreach ($data as $row)
-              <tr>
-                <th>{{ $no++ }}</th>
-                <td>{{ $row->id_transaksi }}</td>
-                <td>{{ $row->user->nama }}</td>
-                <td>{{ $row->jenis_cucian->jenis_cucian }}</td>
-                <td>{{ $row->tipe_laundry->tipe_laundry }}</td>
-                <td>{{ $row->jenis_pencuci->jenis_pencuci }}</td>
-              </tr>
+              @if (auth()->check() && $row->user->id === auth()->user()->id) <!-- Check if user is authenticated and the transaction belongs to the logged-in user -->
+                <tr>
+                  <td>{{ $no++ }}</td>
+                  <td>{{ $row->id_transaksi }}</td>
+                  <td>{{ $row->user->nama }}</td>
+                  <td>{{ $row->jenis_cucian->jenis_cucian }}</td>
+                  <td>{{ $row->tipe_laundry->tipe_laundry }}</td>
+                  <td>{{ $row->jenis_pencuci->jenis_pencuci }}</td>
+                </tr>
+              @endif
             @endforeach
           </tbody>
         </table>

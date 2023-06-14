@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Profile | Laundry</title>
+    <title>Profile Admin| Laundry</title>
     <meta content="" name="keywords">
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,7 +88,7 @@
     </style>
 </head>
 <body>
-<header id="header" class="header d-flex align-items-center fixed-top">
+    <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
             <a href="home"">
@@ -103,7 +103,7 @@
           <div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
-								<a href="home">Home</a>
+								<a href="{{ route('dashboard') }}">Home</a>
                             </li>
           <div class="topbar-divider d-none d-sm-block"></div>
           <li class="nav-item dropdown no-arrow">
@@ -111,6 +111,7 @@
                 <span class="mr-2 d-none d-lg-inline text-gray-600 medium">
                     {{ auth()->user()->nama }}
                 </span>
+                 <img class="rounded-circle" src="{{ asset('storage/' .auth()->user()->foto_profil) }}" alt="Foto Profil" width="50" height="50">
             </a>
            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <div class="dropdown-divider"></div>
@@ -125,6 +126,7 @@
       </nav><!-- .navbar -->
     </div>
   </header><!-- End Header -->
+
     <div class="center-table">
         <h2>Profile</h2>
         <div class="table-responsive">
@@ -155,16 +157,20 @@
                             <td style="color: black;">Email:</td>
                             <td style="color: black;">{{ Auth::user()->email }}</td>
                         </tr>
+                        <tr>
+                            <td style="color: black;">Foto_Profil:</td>
+                            <td>
+                                <img src="{{ asset('path/to/folder/'.Auth::user()->foto_profil) }}" alt="Foto Profil" width="100">
+                            </td>
+                        </tr>
                     @endif
                 </tbody>
             </table>
         </div>
         <div class="edit-button">
-            <a href="{{ route('user.editProfile', ['user' => Auth::user()]) }}">Edit</a>
+            <a href="{{ route('admin.editProfile', ['admin' => Auth::user()]) }}">Edit</a>
         </div>
     </div>
-    <div id="preloader"></div>
-
 <!--===============================================================================================-->
 	<script src="{{ asset('style/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
 <!--===============================================================================================-->
@@ -257,7 +263,6 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="{{ asset('style/js/main.js')}}"></script>
-
 
 
 </body>

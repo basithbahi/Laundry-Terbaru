@@ -75,6 +75,56 @@ class AdminController extends Controller
         return redirect()->route('admin');
     }
 
+    public function editProfile(Request $request)
+    {
+        $user = $request->user();
+
+        return view('pilihProfileAdmin', ['user' => $user]);
+    }
+
+    public function simpanProfile(Request $request)
+    {
+        $image_name = '';
+        if ($request->file('image')) {
+            $image_name = $request->file('image')->store('images', 'public');
+        }
+
+        Admin::create([
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'ttl' => $request->ttl,
+            'jk' => $request->jk,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'foto_profil' => $image_name,
+            'level' => 'Admin'
+        ]);
+
+        return redirect()->route('profileAdmin');
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $image_name = '';
+        if ($request->file('image')) {
+            $image_name = $request->file('image')->store('images', 'public');
+        }
+
+        $user = $request->user();
+        $user->nik = $request->input('nik');
+        $user->nama = $request->input('nama');
+        $user->alamat = $request->input('alamat');
+        $user->ttl = $request->input('ttl');
+        $user->jk = $request->input('jk');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->foto_profil = $image_name;
+        $user->save();
+
+        return redirect()->route('profileAdmin');
+    }
+
     public function hapus($id)
     {
         Admin::find($id)->delete();
