@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>Daftar Akun - Daftar</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -34,7 +34,7 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Buat Akun!</h1>
                             </div>
                             <form action="{{ route('register.simpan') }}" method="POST" class="user" enctype="multipart/form-data">
                                 @csrf
@@ -114,8 +114,7 @@
                                         <input type="file" class="form-control" name="image"
                                         value="{{ isset($user) ? $user->image : '' }}"></br>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-user btn-block">Register
-                                    Account</button>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">Daftar Akun</button>
                             </form>
                             <hr>
                             <div class="text-center">

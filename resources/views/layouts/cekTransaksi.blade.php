@@ -17,6 +17,10 @@
 
   <!-- Custom styles for this template-->
   <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+  <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ asset('style/css/util.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('style/css/main.css')}}">
+<!--===============================================================================================-->
 
 </head>
 
@@ -36,7 +40,58 @@
       <div id="content">
 
         <!-- Topbar -->
-        @include('layouts.navbar')
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <!-- Logo desktop -->
+					<a href="#" class="logo">
+						<img src="{{ asset('style/images/icons/Icon-Utama.png')}}" alt="IMG-LOGO" width="150" height="25">
+					</a>
+
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li class="active-menu">
+								<a href="{{ route('home') }}">Home</a>
+							</li>
+							<li class="label1" data-label1="Cek Transaksi">
+								<a href="transaksi/cek">Transaksi Saya</a>
+							</li>
+						</ul>
+					</div>
+
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+
+
+						<!-- Nav Item - User Information -->
+						<li class="nav-item dropdown no-arrow">
+						<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="mr-2 d-none d-lg-inline text-black-600 medium">
+								{{ auth()->user()->nama }}
+							</span>
+						</a>
+						<!-- Dropdown - User Information -->
+						<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+							<a class="dropdown-item" href="{{ route('profile') }}">
+							<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+							Profile
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="{{ route('logout') }}">
+							<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+							Logout
+							</a>
+						</div>
+						</li>
+						</a>
+					</div>
+</nav>
+
+
+
+
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->

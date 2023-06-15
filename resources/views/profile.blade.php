@@ -90,40 +90,61 @@
 <body>
 <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+            <div class="wrap-menu-desktop">
+				<nav class="limiter-menu-desktop container">
 
-            <a href="home"">
-                    <img src="{{ asset('style/images/icons/Icon-Utama.png')}}" alt="IMG-LOGO" width="150" height="25">
-            </a>
+					<!-- Logo desktop -->
+					<a href="#" class="logo">
+						<img src="{{ asset('style/images/icons/Icon-Utama.png')}}" alt="IMG-LOGO" width="150" height="25">
+					</a>
 
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <div class="menu-desktop">
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
 								<a href="home">Home</a>
-                            </li>
-          <div class="topbar-divider d-none d-sm-block"></div>
-          <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 medium">
-                    {{ auth()->user()->nama }}
-                </span>
-            </a>
-           <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-center" href="{{ route('logout') }}">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-black"></i>
-                  <span class="text-black">Logout</span>
-                </a>
-              </div>
-           </li>
-           <br>
-        </ul>
-      </nav><!-- .navbar -->
-    </div>
+							</li>
+							<li class="label1" data-label1="Cek Transaksi">
+								<a href="transaksi/cek">Transaksi Saya</a>
+							</li>
+						</ul>
+					</div>
+
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+
+
+						<!-- Nav Item - User Information -->
+						<li class="nav-item dropdown no-arrow">
+						<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="mr-2 d-none d-lg-inline text-black-600 medium">
+								{{ auth()->user()->nama }}
+							</span>
+						</a>
+						<!-- Dropdown - User Information -->
+						<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+							<a class="dropdown-item" href="profile">
+							<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+							Profile
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="{{ route('logout') }}">
+							<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+							Logout
+							</a>
+						</div>
+						</li>
+						</a>
+					</div>
+				</nav>
+			</div>
+		</div>
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
   </header><!-- End Header -->
     <div class="center-table">
         <h2>Profile</h2>
@@ -154,6 +175,12 @@
                         <tr>
                             <td style="color: black;">Email:</td>
                             <td style="color: black;">{{ Auth::user()->email }}</td>
+                        </tr>
+						<tr>
+                            <td style="color: black;">Foto_Profil:</td>
+                            <td>
+                                <img src=""{{ asset('storage/' .auth()->user()->foto_profil) }}"" alt="Foto Profil" width="100">
+                            </td>
                         </tr>
                     @endif
                 </tbody>

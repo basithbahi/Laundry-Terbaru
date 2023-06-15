@@ -4,6 +4,7 @@
 
 @section('contents')
 
+  
   <div class="card shadow mb-4">
     <div class="card-header py-3">
         <form action="{{ route('transaksi.search') }}" method="GET">
@@ -30,6 +31,8 @@
               <th>Jenis Cucian</th>
               <th>Tipe Laundry</th>
               <th>Jenis Pencuci</th>
+              <th>Tanggal Cuci</th>
+              <th>Tanggal Selesai</th>
             </tr>
           </thead>
           <tbody>
@@ -43,6 +46,8 @@
                   <td>{{ $row->jenis_cucian->jenis_cucian }}</td>
                   <td>{{ $row->tipe_laundry->tipe_laundry }}</td>
                   <td>{{ $row->jenis_pencuci->jenis_pencuci }}</td>
+                  <td>{{ $row->tanggal_cuci }}</td>
+                  <td>{{ $row->tanggal_selesai }}</td>
                 </tr>
               @endif
             @endforeach
