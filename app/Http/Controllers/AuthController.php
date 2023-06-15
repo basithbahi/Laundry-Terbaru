@@ -18,17 +18,18 @@ class AuthController extends Controller
 
     public function registerSimpan(Request $request)
     {
-        $image_name='';
-        if($request->file('image')){
+        $image_name = '';
+        if ($request->file('image')) {
             $image_name = $request->file('image')->store('images', 'public');
         }
-        
+
         Validator::make($request->all(), [
             'nik' => 'required',
             'nama' => 'required',
             'alamat' => 'required',
             'ttl' => 'required',
             'jk' => 'required',
+            'nomor_telepon' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed'
         ])->validate();
@@ -39,6 +40,7 @@ class AuthController extends Controller
             'alamat' => $request->alamat,
             'ttl' => $request->ttl,
             'jk' => $request->jk,
+            'nomor_telepon' => $request->nomor_telepon,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'foto_profil' => $image_name,

@@ -50,7 +50,17 @@
                                     value="Wanita" {{ isset($user) && $user->jk === 'Wanita' ? 'checked' : '' }}>
                                 <label class="form-control-label" for="inlineRadio2">Wanita</label>
                             </div>
-                        </div>  
+                        </div>
+                        <div class="form-group">
+                            <label for="nomor_telepon">Nomor Telepon</label>
+                            <input name="nomor_telepon" type="text"
+                                class="form-control form-control-user @error('nomor_telepon')is-invalid @enderror"
+                                id="exampleInputnomor_telepon" placeholder="Nomor Telepon"
+                                value="{{ isset($user) ? $user->nomor_telepon : '' }}">
+                            @error('nomor_telepon')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
                         <div class="form-group">
                             <label for="username">Email</label>
                             <input type="text" class="form-control" id="email" name="email"

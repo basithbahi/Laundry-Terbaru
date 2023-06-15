@@ -4,8 +4,8 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
-        <div class="sidebar-brand-icon">
-            <i class="fas fa-fw fa-water"></i>
+        <div class="logo-container">
+        <img src="{{ asset('images/logo.jpeg') }}" alt="Logo"style="width: 60px;border-radius: 50%;">
         </div>
         <div class="sidebar-brand-text mx-3">LAUNDRY QYALIN</div>
     </a>

@@ -16,14 +16,11 @@
                 </div>
             </form>
         </div>
-
-
         <div class="card-body">
             @if (auth()->user()->level == 'Admin')
                 <a href="{{ route('transaksi.tambah') }}" class="btn btn-success mb-3"><i
                         class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;Tambah Transaksi</a>
             @endif
-
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -39,7 +36,7 @@
                                 <th>Total Harga</th>
                                 <th>Tanggal Cuci</th>
                                 <th>Tanggal Selesai</th>
-                                <th>Catatan</th>
+                                <th>Status Pencucian</th>
                                 <th>Aksi</th>
                         @endif
                         </tr>
@@ -47,6 +44,7 @@
                     <tbody>
                         @php($no = 1)
                         @foreach ($data as $row)
+                        @if ($row->status_pencucian === 'BELUM SELESAI')
                             <tr>
                                 <th>{{ $no++ }}</th>
                                 <td>{{ $row->id_transaksi }}</td>
@@ -59,23 +57,25 @@
                                 </td>
                                 <td>{{ $row->tanggal_cuci }}</td>
                                 <td>{{ $row->tanggal_selesai }}</td>
-                                <td>{{ $row->catatan }}</td>
+                                <td>{{ $row->status_pencucian }}</td>
                                 @if (auth()->user()->level == 'Admin')
                                     <td>
                                         <a href="{{ route('transaksi.edit', $row->id) }}" class="btn btn-warning"><i
                                                 class="fas fa-pen"></i></a>
                                         <a href="{{ route('transaksi.hapus', $row->id) }}" class="btn btn-danger"><i
                                                 class="fas fa-trash-alt "></i></a>
-                                        <a href="{{ route('transaksi.bayar', $row->id) }}" class="btn btn-info"><i
-                                                class="fas fa-money-bill "></i></a>
-                                        @if ($loop->first || $row->id_transaksi != $data[$loop->index - 1]->id_transaksi)
-                                        <a href="{{ route('transaksi.cetak', $row->id_transaksi) }}" class="btn btn-primary" target="_blank"><i class="fas fa-print"></i></a>
 
+                                        @if ($loop->first || $row->id_transaksi != $data[$loop->index - 1]->id_transaksi)
+                                            <a href="{{ route('transaksi.cetakNota', $row->id_transaksi) }}"
+                                                class="btn btn-primary" target="_blank"><i class="fas fa-print "></i></a>
                                         @endif
+                                        <br>
+                                        <a href="{{ route('transaksi.selesai', $row->id) }}">Pencucian Selesai</i></a>
 
                                     </td>
                                 @endif
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

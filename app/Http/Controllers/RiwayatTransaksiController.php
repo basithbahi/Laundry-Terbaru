@@ -30,6 +30,13 @@ class RiwayatTransaksiController extends Controller
         return view('cekTransaksi', ['data' => $transaksi]);
     }
 
+    public function cetak()
+    {
+        $transaksi = Transaksi::where('status_pencucian', 'SELESAI')->findOrFail($id_transaksi);
+        $pdf = PDF::loadView('transaksi.cetak', ['transaksi' => $transaksi]);
+        return $pdf->stream();
+    }
+
     public function tambah()
     {
         $user = User::get();
@@ -213,13 +220,6 @@ class RiwayatTransaksiController extends Controller
         }
 
         return view('riwayat_transaksi.index', ['data' => $data]);
-    }
-
-    public function cetak($id_transaksi)
-    {
-        $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->get();
-        $pdf = PDF::loadview('riwayat_transaksi.cetak', ['transaksi' => $transaksi]);
-        return $pdf->stream();
     }
 
     public function selesai($id)

@@ -114,7 +114,9 @@ Route::controller(TransaksiController::class)->prefix('transaksi')->group(functi
     Route::get('bayar/{id}', 'bayar')->name('transaksi.bayar');
     Route::post('bayar/{id}', 'upload')->name('transaksi.bayar.upload');
     Route::get('search', 'search')->name('transaksi.search');
-    Route::get('cetak/{id}', 'cetak')->name('transaksi.cetak');
+    Route::get('cetak', 'cetak')->name('transaksi.cetak');
+    Route::get('cetakSemua', 'cetakSemua')->name('transaksi.cetakSemua');
+    Route::get('cetakNota/{id_transaksi}', 'cetakNota')->name('transaksi.cetakNota');
     Route::post('/transaksi/pesan-lagi', 'TransaksiController@pesanLagi')->name('transaksi.pesan-lagi');
     Route::get('selesai/{id}', 'selesai')->name('transaksi.selesai');
 });
@@ -127,6 +129,7 @@ Route::controller(RiwayatTransaksiController::class)->prefix('riwayat_transaksi'
     Route::post('edit/{id}', 'update')->name('riwayat_transaksi.tambah.update');
     Route::get('hapus/{id}', 'hapus')->name('riwayat_transaksi.hapus');
     Route::get('search', 'search')->name('riwayat_transaksi.search');
+    Route::get('cetak', 'cetak')->name('riwayat_transaksi.cetak');
 });
 
 Route::middleware('auth')->group(function () {

@@ -215,10 +215,36 @@ class TransaksiController extends Controller
         return view('transaksi.index', ['data' => $data]);
     }
 
-    public function cetak($id_transaksi)
+    public function searchRiwayat(Request $request)
     {
-        $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->get();
-        $pdf = PDF::loadview('transaksi.cetak', ['transaksi' => $transaksi]);
+        $query = $request->input('query');
+
+        if ($query) {
+            $data = Transaksi::with('user', 'jenis_cucian', 'tipe_laundry', 'jenis_pencuci')
+                ->whereHas('user', function ($q) use ($query) {
+                    $q->where('nama', 'LIKE', '%' . $query . '%');
+                })
+                ->orWhereHas('jenis_cucian', function ($q) use ($query) {
+                    $q->where('jenis_cucian', 'LIKE', '%' . $query . '%');
+                })
+                ->orWhereHas('tipe_laundry', function ($q) use ($query) {
+                    $q->where('tipe_laundry', 'LIKE', '%' . $query . '%');
+                })
+                ->orWhereHas('jenis_pencuci', function ($q) use ($query) {
+                    $q->where('jenis_pencuci', 'LIKE', '%' . $query . '%');
+                })
+                ->get();
+        } else {
+            $data = Transaksi::get();
+        }
+
+        return view('riwayat_transaksi.index', ['data' => $data]);
+    }
+
+    public function cetak()
+    {
+        $transaksi = Transaksi::where('status_pencucian', 'SELESAI')->get();
+        $pdf = PDF::loadView('transaksi.cetak', ['transaksi' => $transaksi]);
         return $pdf->stream();
     }
 

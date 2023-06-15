@@ -174,6 +174,10 @@
                             <td style="color: black;">{{ Auth::user()->jk }}</td>
                         </tr>
                         <tr>
+                            <td style="color: black;">Nomor Telepon:</td>
+                            <td style="color: black;">{{ Auth::user()->nomor_telepon }}</td>
+                        </tr>
+                        <tr>
                             <td style="color: black;">Email:</td>
                             <td style="color: black;">{{ Auth::user()->email }}</td>
                         </tr>
