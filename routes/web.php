@@ -97,7 +97,6 @@ Route::controller(AdminController::class)->prefix('admin')->group(function () {
     Route::post('edit/{id}', 'update')->name('admin.tambah.update');
     Route::get('hapus/{id}', 'hapus')->name('admin.hapus');
     Route::get('search', 'search')->name('admin.search');
-    Route::post('tambah', 'simpanProfile')->name('admin.tambah.simpanProfile');
     Route::get('editProfile', 'editProfile')->name('admin.editProfile');
     Route::post('editProfile', 'updateProfile')->name('admin.editProfile.updateProfile');
 });
@@ -117,6 +116,7 @@ Route::controller(TransaksiController::class)->prefix('transaksi')->group(functi
     Route::get('search', 'search')->name('transaksi.search');
     Route::get('cetak/{id}', 'cetak')->name('transaksi.cetak');
     Route::post('/transaksi/pesan-lagi', 'TransaksiController@pesanLagi')->name('transaksi.pesan-lagi');
+    Route::get('selesai/{id}', 'selesai')->name('transaksi.selesai');
 });
 
 Route::controller(RiwayatTransaksiController::class)->prefix('riwayat_transaksi')->group(function () {
@@ -144,4 +144,7 @@ Route::middleware('auth')->group(function () {
     Route::get('profileAdmin', function () {
         return view('profileAdmin');
     })->name('profileAdmin');
+    Route::get('transaksi.cek', function () {
+        return view('transaksi.cek');
+    })->name('transaksi.cek');
 });

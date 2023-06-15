@@ -11,7 +11,7 @@ class Transaksi extends Model
 
     protected $table = 'transaksi';
 
-    protected $fillable = ['id_transaksi', 'id_user', 'id_jenis_cucian', 'id_tipe_laundry', 'id_jenis_pencuci', 'berat_cucian', 'tanggal_cuci', 'tanggal_selesai', 'catatan'];
+    protected $fillable = ['id_transaksi', 'id_user', 'id_jenis_cucian', 'id_tipe_laundry', 'id_jenis_pencuci', 'berat_cucian', 'tanggal_cuci', 'tanggal_selesai', 'catatan', 'status_pencucian'];
 
     public function user()
     {

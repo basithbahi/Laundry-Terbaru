@@ -61,6 +61,11 @@
                             <input type="password" class="form-control" id="password" name="password"
                                 value="{{ isset($user) ? $user->password : '' }}">
                         </div>
+                        <div class="form-group">
+                            <label for="image">Foto Profil</label>
+                            <input type="file" class="form-control" name="image"
+                                value="{{ isset($admin) ? $admin->image : '' }}"><br>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>

@@ -39,7 +39,7 @@
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                       <div class="form-group">
                             <label for="jk">Jenis Kelamin</label>
                             <div class="form-control form-control-user" style="font-size: 14px;">
                                 <input class="form-control-input" type="radio" name="jk" id="inlineRadio1"
@@ -50,7 +50,7 @@
                                     value="Wanita" {{ isset($user) && $user->jk === 'Wanita' ? 'checked' : '' }}>
                                 <label class="form-control-label" for="inlineRadio2">Wanita</label>
                             </div>
-                        </div>
+                        </div>  
                         <div class="form-group">
                             <label for="username">Email</label>
                             <input type="text" class="form-control" id="email" name="email"
@@ -60,6 +60,13 @@
                             <label for="password">Password</label>
                             <input type="password" class="form-control" id="password" name="password"
                                 value="{{ isset($user) ? $user->password : '' }}">
+                        </div>
+                           <div class="form-group">
+                            <label for="image">Foto Profil</label>
+                            <input type="file" class="form-control" name="image">
+                            @if (isset($user) && $user->foto_profil)
+                                <img src="{{ asset('storage/'.$user->foto_profil) }}" alt="Foto Profil" width="100">
+                            @endif
                         </div>
                     </div>
                     <div class="card-footer">

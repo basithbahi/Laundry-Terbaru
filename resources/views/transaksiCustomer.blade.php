@@ -15,7 +15,11 @@
         $tipe_laundry = TipeLaundry::get();
         $jenis_pencuci = JenisPencuci::get();
 
-        $id_transaksi = 'TR' . date('d');
+        $id_transaksi = 'TR' . mt_rand(1000, 9999);
+        $existing_ids = \App\Models\Transaksi::pluck('id_transaksi')->toArray();
+        while (in_array($id_transaksi, $existing_ids)) {
+            $id_transaksi = 'TR' . mt_rand(1000, 9999);
+        }
     @endphp
 
     <form action="{{ route('transaksi.tambahCustomer.simpanCustomer') }}" method="post">

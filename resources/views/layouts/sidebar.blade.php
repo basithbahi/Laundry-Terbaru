@@ -50,9 +50,9 @@
             <span>Transaksi</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('dashboard') }}">
+        <a class="nav-link" href="{{ route('riwayat_transaksi') }}">
             <i class="fas fa-fw fa-tasks"></i>
-            <span>Status Pencucian</span></a>
+            <span>Riwayat Transaksi</span></a>
     </li>
 
     <!-- Divider -->

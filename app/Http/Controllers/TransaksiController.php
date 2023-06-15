@@ -25,7 +25,7 @@ class TransaksiController extends Controller
 
     public function cekTransaksi()
     {
-        $transaksi = Transaksi::get();
+        $transaksi = Transaksi::orderBy('status_pencucian')->get();
 
         return view('cekTransaksi', ['data' => $transaksi]);
     }
@@ -227,5 +227,16 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->get();
         $pdf = PDF::loadview('transaksi.cetakNota', compact('transaksi'));
         return $pdf->stream();
+    }
+
+    public function selesai($id)
+    {
+        $data = [
+            'status_pencucian' => 'SELESAI',
+        ];
+
+        Transaksi::find($id)->update($data);
+
+        return redirect()->route('transaksi');
     }
 }
