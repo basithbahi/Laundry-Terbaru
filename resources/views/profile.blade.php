@@ -151,6 +151,7 @@
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <tbody>
+				<br><br><br>
                     @if (Auth::check())
                         <tr>
                             <td style="color: black;">NIK:</td>
@@ -178,9 +179,7 @@
                         </tr>
 						<tr>
                             <td style="color: black;">Foto_Profil:</td>
-                            <td>
-                                <img src=""{{ asset('storage/' .auth()->user()->foto_profil) }}"" alt="Foto Profil" width="100">
-                            </td>
+                            <td><img src="{{ asset('storage/' .Auth::user()->foto_profil) }}" alt="Foto Profil" height="60" ></td>
                         </tr>
                     @endif
                 </tbody>
