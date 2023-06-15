@@ -28,6 +28,7 @@
               <th>Alamat</th>
               <th>Tanggal Lahir</th>
               <th>Jenis Kelamin</th>
+              <th>Nomor Telepon</th>
               <th>Email</th>
               <th>Password</th>
               <th>foto profil</th>
@@ -44,6 +45,7 @@
                 <td>{{ $row->alamat }}</td>
                 <td>{{ $row->ttl }}</td>
                 <td>{{ $row->jk }}</td>
+                <td>{{ $row->nomor_telepon }}</td>
                 <td>{{ $row->email }}</td>
                 <td>{{ $row->password }}</td>
                 <td>{{ $row->foto_profil }}</td>

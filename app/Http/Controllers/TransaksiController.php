@@ -221,4 +221,11 @@ class TransaksiController extends Controller
         $pdf = PDF::loadview('transaksi.cetak', ['transaksi' => $transaksi]);
         return $pdf->stream();
     }
+
+    public function cetakNota($id_transaksi)
+    {
+        $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->get();
+        $pdf = PDF::loadview('transaksi.cetakNota', compact('transaksi'));
+        return $pdf->stream();
+    }
 }

@@ -51,6 +51,11 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="nomor_telepon">Nomor Telepon</label>
+                            <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon"
+                                value="{{ isset($user) ? $user->nomor_telepon : '' }}">
+                        </div>
+                        <div class="form-group">
                             <label for="username">Email</label>
                             <input type="text" class="form-control" id="email" name="email"
                                 value="{{ isset($user) ? $user->email : '' }}">
@@ -62,9 +67,12 @@
                         </div>
                         <div class="form-group">
                             <label for="image">Foto Profil</label>
-                            <input type="file" class="form-control" name="image"
-                                value="{{ isset($user) ? $user->image : '' }}">
+                            <input type="file" class="form-control" name="image">
+                            @if (isset($user) && $user->foto_profil)
+                                <img src="{{ asset('storage/' . $user->foto_profil) }}" alt="Foto Profil" width="20">
+                            @endif
                         </div>
+
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>

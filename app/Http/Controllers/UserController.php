@@ -46,6 +46,7 @@ class UserController extends Controller
             'alamat' => $request->alamat,
             'ttl' => $request->ttl,
             'jk' => $request->jk,
+            'nomor_telepon' => $request->nomor_telepon,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'foto_profil' => $image_name,
@@ -74,8 +75,9 @@ class UserController extends Controller
             'alamat' => $request->alamat,
             'ttl' => $request->ttl,
             'jk' => $request->jk,
+            'nomor_telepon' => $request->nomor_telepon,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => ($request->password),
             'foto_profil' => $image_name,
         ]);
 
@@ -102,8 +104,9 @@ class UserController extends Controller
             'alamat' => $request->alamat,
             'ttl' => $request->ttl,
             'jk' => $request->jk,
+            'nomor_telepon' => $request->nomor_telepon,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => ($request->password),
             'foto_profil' => $image_name,
             'level' => 'User'
         ]);
@@ -124,6 +127,7 @@ class UserController extends Controller
         $user->alamat = $request->input('alamat');
         $user->ttl = $request->input('ttl');
         $user->jk = $request->input('jk');
+        $user->nomor_telepon = $request->input('nomor_telepon');
         $user->email = $request->input('email');
         $user->password = $request->input('password');
         $user->foto_profil = $image_name;

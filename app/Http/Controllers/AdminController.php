@@ -27,8 +27,8 @@ class AdminController extends Controller
 
     public function simpan(Request $request)
     {
-        $image_name='';
-        if($request->file('image')){
+        $image_name = '';
+        if ($request->file('image')) {
             $image_name = $request->file('image')->store('images', 'public');
         }
 
@@ -38,6 +38,7 @@ class AdminController extends Controller
             'alamat' => $request->alamat,
             'ttl' => $request->ttl,
             'jk' => $request->jk,
+            'nomor_telepon' => $request->nomor_telepon,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'foto_profil' => $image_name,
@@ -56,19 +57,20 @@ class AdminController extends Controller
 
     public function update($id, Request $request)
     {
-        $image_name='';
-        if($request->file('image')){
+        $image_name = '';
+        if ($request->file('image')) {
             $image_name = $request->file('image')->store('images', 'public');
         }
-        
+
         Admin::find($id)->update([
             'nik' => $request->nik,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'ttl' => $request->ttl,
             'jk' => $request->jk,
+            'nomor_telepon' => $request->nomor_telepon,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => ($request->password),
             'foto_profil' => $image_name,
         ]);
 
@@ -95,8 +97,9 @@ class AdminController extends Controller
             'alamat' => $request->alamat,
             'ttl' => $request->ttl,
             'jk' => $request->jk,
+            'nomor_telepon' => $request->nomor_telepon,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => ($request->password),
             'foto_profil' => $image_name,
             'level' => 'Admin'
         ]);
@@ -117,6 +120,7 @@ class AdminController extends Controller
         $user->alamat = $request->input('alamat');
         $user->ttl = $request->input('ttl');
         $user->jk = $request->input('jk');
+        $user->nomor_telepon = $request->input('nomor_telepon');
         $user->email = $request->input('email');
         $user->password = $request->input('password');
         $user->foto_profil = $image_name;
@@ -129,7 +133,7 @@ class AdminController extends Controller
     {
         Admin::find($id)->delete();
 
-            return redirect()->route('admin');
+        return redirect()->route('admin');
     }
 
     public function search(Request $request)
