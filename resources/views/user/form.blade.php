@@ -62,8 +62,10 @@
                         </div>
                         <div class="form-group">
                             <label for="image">Foto Profil</label>
-                            <input type="file" class="form-control" name="image"
-                                value="{{ isset($user) ? $user->image : '' }}">
+                            <input type="file" class="form-control" name="image">
+                            @if (isset($user) && $user->foto_profil)
+                                <img src="{{ asset('storage/'.$user->foto_profil) }}" alt="Foto Profil" width="100">
+                            @endif
                         </div>
                     </div>
                     <div class="card-footer">

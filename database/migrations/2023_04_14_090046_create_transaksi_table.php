@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('tanggal_cuci')->nullable();
             $table->date('tanggal_selesai')->nullable();
             $table->string('catatan')->nullable();
+            $table->string('status_pencucian')->default('BELUM SELESAI');
             $table->timestamps();
         });
     }
