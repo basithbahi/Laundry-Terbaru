@@ -4,6 +4,16 @@
 
 @section('contents')
 
+<style>
+  .disabled-button {
+  background-color: #6eaa5e;
+  color: white;
+}
+.button {
+  background-color: #9999FF;
+  color: white;
+}
+</style>
   <div class="card shadow mb-4">
     <div class="card-header py-3">
         <form action="{{ route('transaksi.search') }}" method="GET">
@@ -30,6 +40,7 @@
               <th>Jenis Cucian</th>
               <th>Tipe Laundry</th>
               <th>Jenis Pencuci</th>
+              <th>Status Pencucian</th>
             </tr>
           </thead>
           <tbody>
@@ -43,6 +54,11 @@
                   <td>{{ $row->jenis_cucian->jenis_cucian }}</td>
                   <td>{{ $row->tipe_laundry->tipe_laundry }}</td>
                   <td>{{ $row->jenis_pencuci->jenis_pencuci }}</td>
+                  @if ($row->status_pencucian === 'SELESAI')
+                  <td><button class="disabled-button" disabled>{{ $row->status_pencucian }}</button></td>
+                  @else
+                  <td><button class="button" disabled>{{ $row->status_pencucian }}</button></td>
+                  @endif
                 </tr>
               @endif
             @endforeach

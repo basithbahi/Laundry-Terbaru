@@ -3,8 +3,8 @@
 @section('title', 'Form Admin')
 
 @section('contents')
-    <form action="{{ isset($admin) ? route('admin.tambah.update', $admin->id) : route('admin.tambah.simpan') }}"
-        method="post">
+<form action="{{ isset($admin) ? route('admin.tambah.update', $admin->id) : route('admin.tambah.simpan') }}" method="post"
+        enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-12">
@@ -62,8 +62,10 @@
                         </div>
                         <div class="form-group">
                             <label for="image">Foto Profil</label>
-                            <input type="file" class="form-control" name="image"
-                                value="{{ isset($admin) ? $admin->image : '' }}"><br>
+                            <input type="file" class="form-control" name="image">
+                            @if (isset($admin) && $admin->foto_profil)
+                                <img src="{{ asset('storage/'.$admin->foto_profil) }}" alt="Foto Profil" width="100">
+                            @endif
                         </div>
                     </div>
                     <div class="card-footer">

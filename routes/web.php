@@ -97,7 +97,6 @@ Route::controller(AdminController::class)->prefix('admin')->group(function () {
     Route::post('edit/{id}', 'update')->name('admin.tambah.update');
     Route::get('hapus/{id}', 'hapus')->name('admin.hapus');
     Route::get('search', 'search')->name('admin.search');
-    Route::post('tambah', 'simpanProfile')->name('admin.tambah.simpanProfile');
     Route::get('editProfile', 'editProfile')->name('admin.editProfile');
     Route::post('editProfile', 'updateProfile')->name('admin.editProfile.updateProfile');
 });

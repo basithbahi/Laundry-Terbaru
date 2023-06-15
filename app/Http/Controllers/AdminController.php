@@ -13,7 +13,15 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show($id)
+    {
+        $admin = Admin::find($id);
+
+        return view('admin.show', ['admin' => $admin]);
+    }
+
+    
+     public function index()
     {
         $admin = Admin::get();
 

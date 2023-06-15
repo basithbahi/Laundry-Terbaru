@@ -24,11 +24,11 @@ class TransaksiController extends Controller
     }
 
     public function cekTransaksi()
-    {
-        $transaksi = Transaksi::get();
+{
+    $transaksi = Transaksi::orderBy('status_pencucian')->get();
 
-        return view('cekTransaksi', ['data' => $transaksi]);
-    }
+    return view('cekTransaksi', ['data' => $transaksi]);
+}
 
     public function tambah()
     {
