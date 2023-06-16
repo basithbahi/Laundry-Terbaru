@@ -40,6 +40,8 @@
               <th>Jenis Cucian</th>
               <th>Tipe Laundry</th>
               <th>Jenis Pencuci</th>
+              <th>Berat Cucian</th>
+              <th>Total Harga</th>
               <th>Tanggal Cuci</th>
               <th>Tanggal Selesai</th>
               <th>Status Pencucian</th>
@@ -56,6 +58,8 @@
                   <td>{{ $row->jenis_cucian->jenis_cucian }}</td>
                   <td>{{ $row->tipe_laundry->tipe_laundry }}</td>
                   <td>{{ $row->jenis_pencuci->jenis_pencuci }}</td>
+                  <td>{{ $row->berat_cucian }}</td>
+                  <td>Rp{{ number_format($row->berat_cucian * $row->jenis_cucian->harga + $row->berat_cucian * $row->tipe_laundry->harga + $row->berat_cucian * $row->jenis_pencuci->harga) }}</td>
                   <td>{{ $row->tanggal_cuci }}</td>
                   <td>{{ $row->tanggal_selesai }}</td>
                   @if ($row->status_pencucian === 'SELESAI')
