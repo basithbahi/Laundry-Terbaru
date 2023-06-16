@@ -13,6 +13,7 @@ use App\Models\RiwayatTransaksi;
 use App\Http\Controllers\Exception;
 use Exception as GlobalException;
 use FFI\Exception as FFIException;
+use Carbon\Carbon;
 
 class TransaksiController extends Controller
 {
@@ -259,6 +260,7 @@ class TransaksiController extends Controller
     {
         $data = [
             'status_pencucian' => 'SELESAI',
+            'tanggal_selesai' => Carbon::now(),
         ];
 
         Transaksi::find($id)->update($data);
