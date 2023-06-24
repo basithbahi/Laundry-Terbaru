@@ -64,7 +64,6 @@
                                                 class="fas fa-pen"></i></a>
                                         <a href="{{ route('transaksi.hapus', $row->id) }}" class="btn btn-danger"><i
                                                 class="fas fa-trash-alt "></i></a>
-
                                         @if ($loop->first || $row->id_transaksi != $data[$loop->index - 1]->id_transaksi)
                                             <a href="{{ route('transaksi.cetakNota', $row->id_transaksi) }}"
                                                 class="btn btn-primary" target="_blank"><i class="fas fa-print "></i></a>

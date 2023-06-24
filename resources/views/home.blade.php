@@ -34,6 +34,12 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('style/css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('style/css/main.css')}}">
 <!--===============================================================================================-->
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body class="animsition">
 
@@ -342,10 +348,7 @@
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Bantuan
-					</h4>
-
+                    <div id="map"></div>
 					<ul>
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
@@ -573,6 +576,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 									<i class="fa fa-google-plus"></i>
 								</a>
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -588,7 +592,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="{{ asset('style/vendor/bootstrap/js/popper.js')}}"></script>
 	<script src="{{ asset('style/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 <!--===============================================================================================-->
-	<script src="{{ asset('style/vendor/select2/select2.min.js')}}"></script>
+<script>
+    function initMap() {
+        // Koordinat pusat peta
+        var center = { lat: -6.2088, lng: 106.8456 };
+
+        // Buat peta baru
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: center
+        });
+
+        // Tambahkan marker
+        var marker = new google.maps.Marker({
+            position: center,
+            map: map,
+            title: 'Lokasi Peta'
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi57S5OdrRBIMdLg0zxhL7LCKx-ZrMqqY&callback=initMap" async defer></script>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script src="{{ asset('style/vendor/select2/select2.min.js')}}"></script>
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
