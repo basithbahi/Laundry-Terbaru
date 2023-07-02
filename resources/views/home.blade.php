@@ -34,9 +34,9 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('style/css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('style/css/main.css')}}">
 <!--===============================================================================================-->
-    <style>
+ <style>
         #map {
-            height: 400px;
+            height: 480px;
             width: 100%;
         }
     </style>
@@ -46,9 +46,12 @@
 
 			<div class="wrap-menu-desktop">
 				<nav class="limiter-menu-desktop container">
-
+					<div class="logo-container">
+					<img src="{{ asset('images/logo.jpeg') }}" alt="Logo"style="width: 60px;border-radius: 50%;">
+					</div>
+					&nbsp, &nbsp
 					<!-- Logo desktop -->
-					<a href="home" class="logo">
+					<a href="#" class="logo">
 						<img src="{{ asset('style/images/icons/Icon-Utama.png')}}" alt="IMG-LOGO" width="150" height="25">
 					</a>
 
@@ -180,7 +183,7 @@
 	<section class="section-slide">
 		<div class="wrap-slick1">
 			<div class="slick1">
-				<div class="item-slick1" style="background-image: url({{ asset('style/images/slide-01.jpg);')}}">
+			<div class="item-slick1" style="background-image: url('https://wallpaperaccess.com/full/4450768.jpg');">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
@@ -204,7 +207,7 @@
 					</div>
 				</div>
 
-				<div class="item-slick1" style="background-image: url({{ asset('style/images/slide-02.jpg);')}}">
+				<div class="item-slick1" style="background-image: url({{ asset('https://media.istockphoto.com/photos/laundry-basket-on-blurred-background-of-modern-washing-machine-picture-id1193666906?k=6&m=1193666906&s=170667a&w=0&h=ZdlpH40PUmQp873QSEJOdmqHYFjFXY2OhsuhcuLXyL8=);')}}">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
@@ -233,13 +236,21 @@
 
 
 	<!-- Banner -->
+	&nbsp
+	<div class="block1-txt-child1 flex-col-l" style="text-align: center;">
+    <span class="block1-name ltext-102 trans-04 p-b-8" style="display: inline-block; margin: 0 auto;">
+        Kami Melayani
+    </span>
+</div>
+
+
 	<div class="sec-banner bg0 p-t-80 p-b-50">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="{{ asset('style/images/banner-01.jpg')}}" alt="IMG-BANNER">
+						<img src="{{ asset('https://media.istockphoto.com/photos/women-clothes-hanging-on-hangers-clothing-rails-fashion-design-picture-id916092484?k=20&m=916092484&s=170667a&w=0&h=fCTqyrRn5e-dSDv8BPKHcv4HYZ0u4nJbxB89GYcwZ1A=')}}" alt="IMG-BANNER">
 
 						<a href="transaksiCustomer" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
@@ -264,7 +275,7 @@
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="{{ asset('style/images/banner-02.jpg')}}" alt="IMG-BANNER">
+						<img src="{{ asset('https://asset.kompas.com/crops/1pCY3i3K27eHUogF1YC9XYEoUV4=/240x160:2160x1441/750x500/data/photo/2021/01/10/5ffaf2c4e8171.jpg')}}" alt="IMG-BANNER">
 
 						<a href="transaksiCustomer" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
@@ -289,7 +300,7 @@
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="{{ asset('style/images/banner-03.jpg')}}" alt="IMG-BANNER">
+						<img src="{{ asset('https://www.mamylaundryjakarta.com/wp-content/uploads/2016/09/laundry-kiloan.png')}}" alt="IMG-BANNER">
 
 						<a href="transaksiCustomer" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
@@ -348,7 +359,10 @@
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
-                    <div id="map"></div>
+					<h4 class="stext-301 cl0 p-b-30">
+						Bantuan
+					</h4>
+
 					<ul>
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
@@ -414,10 +428,39 @@
 				</div>
 			</div>
 
+			<div id="map"></div>
+        <script>
+            function initMap() {
+                var lombok = {
+                    lat: -7.989712,
+                    lng: 112.575955
+                };
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 9,
+                    center: lombok
+                });
+                var contentString = "Laundry Qyalin";
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                //membuat marker
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(-7.989712, 112.575955),
+                    map: map
+                });
+                infowindow.open({
+                    anchor: marker,
+                    map,
+                    shouldFocus: false
+                });
+            }
+        </script>
+		 <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
+
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with Laundry Qyalin</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
@@ -576,7 +619,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 									<i class="fa fa-google-plus"></i>
 								</a>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -592,28 +634,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="{{ asset('style/vendor/bootstrap/js/popper.js')}}"></script>
 	<script src="{{ asset('style/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 <!--===============================================================================================-->
-<script>
-    function initMap() {
-        // Koordinat pusat peta
-        var center = { lat: -6.2088, lng: 106.8456 };
-
-        // Buat peta baru
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
-            center: center
-        });
-
-        // Tambahkan marker
-        var marker = new google.maps.Marker({
-            position: center,
-            map: map,
-            title: 'Lokasi Peta'
-        });
-    }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi57S5OdrRBIMdLg0zxhL7LCKx-ZrMqqY&callback=initMap" async defer></script>
-<script src="http://maps.googleapis.com/maps/api/js"></script>
-<script src="{{ asset('style/vendor/select2/select2.min.js')}}"></script>
+	<script src="{{ asset('style/vendor/select2/select2.min.js')}}"></script>
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
@@ -664,6 +685,19 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 <!--===============================================================================================-->
 	<script src="{{ asset('style/js/main.js')}}"></script>
+ <!-- Core plugin JavaScript-->
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
+
+
+    <!-- Template Main JS File -->
+    <script src="{{ asset('style/assets/js/main.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('style/js/main.js')}}"></script>
 
 </body>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/#[[latestVersion]]#/mdb.min.js">
+</script>
+
 </html>
