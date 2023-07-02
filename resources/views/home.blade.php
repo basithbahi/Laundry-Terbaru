@@ -34,12 +34,15 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('style/css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('style/css/main.css')}}">
 <!--===============================================================================================-->
+<<<<<<< HEAD
  <style>
         #map {
             height: 480px;
             width: 100%;
         }
     </style>
+=======
+>>>>>>> e7c7849327ccb2d593ee344c3c5c0a16673236d1
 </head>
 <body class="animsition">
 
