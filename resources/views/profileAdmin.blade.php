@@ -164,7 +164,8 @@
                         <tr>
                             <td style="color: black;">Foto_Profil:</td>
                             <td>
-                                <img src="{{ asset('path/to/folder/'.Auth::user()->foto_profil) }}" alt="Foto Profil" width="100">
+                                <!-- <img src="{{ asset('path/to/folder/'.Auth::user()->foto_profil) }}" alt="Foto Profil" width="100"> -->
+                                <img src="{{ asset('storage/' .Auth::user()->foto_profil) }}" alt="Foto Profil" width="100">
                             </td>
                         </tr>
                     @endif

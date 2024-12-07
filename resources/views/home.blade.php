@@ -49,7 +49,7 @@
 					<div class="logo-container">
 					<img src="{{ asset('images/logo.jpeg') }}" alt="Logo"style="width: 60px;border-radius: 50%;">
 					</div>
-					&nbsp, &nbsp
+					&nbsp; &nbsp;
 					<!-- Logo desktop -->
 					<a href="#" class="logo">
 						<img src="{{ asset('style/images/icons/Icon-Utama.png')}}" alt="IMG-LOGO" width="150" height="25">
@@ -100,22 +100,6 @@
 			</div>
 		</div>
 
-		<!-- Header Mobile -->
-		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->
-			<div class="logo-mobile">
-				<a href="index.html"><img src="{{ asset('style/images/icons/logo-01.png')}}" alt="IMG-LOGO"></a>
-			</div>
-
-			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-					<i class="zmdi zmdi-search"></i>
-				</div>
-			</div>
-
-
-		</div>
 
 
 		<!-- Menu Mobile -->
@@ -207,7 +191,7 @@
 					</div>
 				</div>
 
-				<div class="item-slick1" style="background-image: url({{ asset('https://media.istockphoto.com/photos/laundry-basket-on-blurred-background-of-modern-washing-machine-picture-id1193666906?k=6&m=1193666906&s=170667a&w=0&h=ZdlpH40PUmQp873QSEJOdmqHYFjFXY2OhsuhcuLXyL8=);')}}">
+				<div class="item-slick1" style="background-image: url('{{ asset('https://media.istockphoto.com/photos/laundry-basket-on-blurred-background-of-modern-washing-machine-picture-id1193666906?k=6&m=1193666906&s=170667a&w=0&h=ZdlpH40PUmQp873QSEJOdmqHYFjFXY2OhsuhcuLXyL8=') }}')">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
@@ -668,7 +652,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		    });
 		});
 <!--===============================================================================================-->
-	<script src="{{ asset('style/vendor/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+	// <script src="{{asset('style/vendor/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
 	<script>
 		$('.js-pscroll').each(function(){
 			$(this).css('position','relative');

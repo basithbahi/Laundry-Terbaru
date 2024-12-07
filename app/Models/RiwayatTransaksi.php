@@ -19,8 +19,8 @@ class RiwayatTransaksi extends Model
         return $this->belongsTo(Transaksi::class, 'id_transaksi');
     }
 
-    public function metode_pembayaran()
-    {
-        return $this->belongsTo(MetodePembayaran::class, 'id_metode_pembayaran');
-    }
+    // public function metode_pembayaran()
+    // {
+    //     return $this->belongsTo(MetodePembayaran::class, 'id_metode_pembayaran');
+    // }
 }
