@@ -23,7 +23,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $user = User::get();
+        $user = User::get()->where('level', 'User');
 
         return view('user/index', ['user' => $user]);
     }

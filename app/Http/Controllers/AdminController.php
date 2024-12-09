@@ -23,7 +23,7 @@ class AdminController extends Controller
     
      public function index()
     {
-        $admin = Admin::get();
+        $admin = Admin::get()->where('level', 'Admin');
 
         return view('admin/index', ['admin' => $admin]);
     }
@@ -153,7 +153,8 @@ class AdminController extends Controller
                 ->where('nik', 'like', "%$query%")
                 ->orWhere('nama', 'like', "%$query%")
                 ->orWhere('alamat', 'like', "%$query%")
-                ->orderBy('jk', 'asc')
+                ->orWhere('email', 'like', "%$query%")
+                ->orderBy('created_at', 'asc')
                 ->paginate(10);
         } else {
             $admin = Admin::get();

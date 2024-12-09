@@ -13,8 +13,5 @@ class Admin extends Model
 
     protected $fillable = ['id_admin', 'nik', 'nama', 'alamat', 'ttl', 'jk', 'nomor_telepon', 'email', 'password', 'foto_profil', 'level'];
 
-    public function jadwal()
-    {
-        return $this->hasMany(Jadwal::class, 'id_admin');
-    }
+    
 }

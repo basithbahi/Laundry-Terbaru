@@ -6,14 +6,14 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <form action="{{ route('user.search') }}" method="GET">
-        <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" name="query" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-            <button class="btn btn-primary" type="submit">
-                <i class="fas fa-search fa-sm"></i>
-            </button>
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" name="query" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+                </div>
             </div>
-        </div>
         </form>
     </div>
     <div class="card-body">
@@ -37,7 +37,7 @@
         </thead>
         <tbody>
             @php($no = 1)
-            @foreach (DB::table('users')->where('level', 'user')->get() as $row)
+            @foreach ($user as $row)
             <tr>
                 <th>{{ $no++ }}</th>
                 <td>{{ $row->nik }}</td>
@@ -48,7 +48,7 @@
                 <td>{{ $row->nomor_telepon }}</td>
                 <td>{{ $row->email }}</td>
                 <td>{{ $row->password }}</td>
-                <td><img src="{{ asset('storage/' .$row->foto_profil) }}" alt="Foto Profil"></td>
+                <td><img src="{{ asset('storage/' .$row->foto_profil) }}" alt="Foto Profil"  style="width: 50px; height: 50px;"></td>
                 <td>
                     <a href="{{ route('user.edit', $row->id) }}" class="btn btn-warning">Edit &nbsp;&nbsp;&nbsp;<i class="fas fa-pen"></i></a>
                     <a href="{{ route('user.hapus', $row->id) }}" class="btn btn-danger">Hapus &nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt "></i></a>
