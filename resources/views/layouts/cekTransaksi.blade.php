@@ -37,6 +37,9 @@
 <!-- Custom fonts for this template-->
    	<link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 
+	<!-- Favicon -->
+	<link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+	
     <style>
         #map {
             height: 400px;

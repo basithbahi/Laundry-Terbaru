@@ -18,6 +18,9 @@
   <!-- Custom styles for this template-->
   <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+  <!-- Favicon -->
+  <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+
 </head>
 
 <body id="page-top">

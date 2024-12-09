@@ -33,6 +33,9 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('style/css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('style/css/main.css')}}">
+
+	<!-- Favicon -->
+	<link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
 <!--===============================================================================================-->
  <style>
         #map {
