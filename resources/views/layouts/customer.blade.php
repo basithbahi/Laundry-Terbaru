@@ -35,7 +35,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        @include('layouts.navbar')
+        @include('layouts.navbarUser')
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->

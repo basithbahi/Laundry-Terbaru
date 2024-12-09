@@ -94,7 +94,9 @@
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="#" class="logo">
+					<img src="{{ asset('images/logo.jpeg') }}" alt="Logo" style="width: 60px; border-radius: 50%;">
+        			&nbsp; &nbsp;
+					<a href="home" class="logo">
 						<img src="{{ asset('style/images/icons/Icon-Utama.png')}}" alt="IMG-LOGO" width="150" height="25">
 					</a>
 

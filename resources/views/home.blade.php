@@ -51,7 +51,7 @@
 					</div>
 					&nbsp; &nbsp;
 					<!-- Logo desktop -->
-					<a href="#" class="logo">
+					<a href="{{ route('home') }}" class="logo">
 						<img src="{{ asset('style/images/icons/Icon-Utama.png')}}" alt="IMG-LOGO" width="150" height="25">
 					</a>
 
@@ -69,7 +69,7 @@
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
@@ -191,7 +191,8 @@
 					</div>
 				</div>
 
-				<div class="item-slick1" style="background-image: url('{{ asset('https://media.istockphoto.com/photos/laundry-basket-on-blurred-background-of-modern-washing-machine-picture-id1193666906?k=6&m=1193666906&s=170667a&w=0&h=ZdlpH40PUmQp873QSEJOdmqHYFjFXY2OhsuhcuLXyL8=') }}')">
+				<div class="item-slick1" style="background-image: url('https://media.istockphoto.com/photos/laundry-basket-on-blurred-background-of-modern-washing-machine-picture-id1193666906?k=6&m=1193666906&s=170667a&w=0&h=ZdlpH40PUmQp873QSEJOdmqHYFjFXY2OhsuhcuLXyL8=')">
+
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">

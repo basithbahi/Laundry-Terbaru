@@ -114,6 +114,7 @@ Route::controller(TransaksiController::class)->prefix('transaksi')->group(functi
     Route::get('bayar/{id}', 'bayar')->name('transaksi.bayar');
     Route::post('bayar/{id}', 'upload')->name('transaksi.bayar.upload');
     Route::get('search', 'search')->name('transaksi.search');
+    Route::get('search-user', 'searchUser')->name('transaksi.searchUser');
     Route::get('cetak', 'cetak')->name('transaksi.cetak');
     Route::get('cetakSemua', 'cetakSemua')->name('transaksi.cetakSemua');
     Route::get('cetakNota/{id_transaksi}', 'cetakNota')->name('transaksi.cetakNota');

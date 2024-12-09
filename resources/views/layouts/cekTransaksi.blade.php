@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home</title>
+	<title>Transaksi Saya</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -19,7 +19,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('style/vendor/css-hamburgers/hamburgers.min.css')}}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('style/vendor/animsition/css/animsition.min.css')}}">
+	<!-- <link rel="stylesheet" type="text/css" href="{{ asset('style/vendor/animsition/css/animsition.min.css')}}"> -->
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('style/vendor/select2/select2.min.css')}}">
 <!--===============================================================================================-->
@@ -34,6 +34,9 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('style/css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('style/css/main.css')}}">
 <!--===============================================================================================-->
+<!-- Custom fonts for this template-->
+   	<link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+
     <style>
         #map {
             height: 400px;
@@ -42,13 +45,15 @@
     </style>
 </head>
 <body class="animsition">
-
-
 			<div class="wrap-menu-desktop">
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="#" class="logo">
+					<div class="logo-container">
+					<img src="{{ asset('images/logo.jpeg') }}" alt="Logo"style="width: 60px;border-radius: 50%;">
+					</div>
+					&nbsp; &nbsp;
+					<a href="{{ route('home') }}" class="logo">
 						<img src="{{ asset('style/images/icons/Icon-Utama.png')}}" alt="IMG-LOGO" width="150" height="25">
 					</a>
 
@@ -59,14 +64,14 @@
 								<a href="{{ route('home') }}">Home</a>
 							</li>
 							<li class="label1" data-label1="Cek Transaksi">
-								<a href="transaksi/cek">Transaksi Saya</a>
+								<a href="" >Transaksi Saya</a>
 							</li>
 						</ul>
 					</div>
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
@@ -93,46 +98,32 @@
 						</li>
 						</a>
 					</div>
-</nav>
+				</nav>
+        		<!-- End of Topbar -->
+				<div style="margin-top: 0px;"></div>
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid" style="margin-left: 15px; margin-right: 15px;">
+
+				<!-- Page Heading -->
+				<div class="d-sm-flex align-items-center justify-content-between mb-4">
+					<h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
+				</div>
+
+				@yield('contents')
+
+				<!-- Content Row -->
 
 
+				</div>
+				<!-- /.container-fluid -->
 
-
-        <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
-          </div>
-
-          @yield('contents')
-
-          <!-- Content Row -->
-
-
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      @include('layouts.footer')
-      <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
+						
+				<!-- Footer -->
+				@include('layouts.footer')
+	  		</div>
   <!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
 
   <!-- Bootstrap core JavaScript-->
   <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
