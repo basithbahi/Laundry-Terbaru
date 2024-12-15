@@ -61,7 +61,7 @@
                             </tr>
                             @endif
                         @endforeach
-                        <a href="{{ route('transaksi.cetak') }}" class="btn btn-primary"
+                        <a href="{{ route('riwayat_transaksi.cetakSemua') }}" class="btn btn-primary"
                             target="_blank"><i class="fas fa-print "></i>&nbsp;&nbsp;&nbsp;&nbsp;Cetak</a>
                     </tbody>
                 </table>

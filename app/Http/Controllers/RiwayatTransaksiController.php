@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
 use App\Models\User;
@@ -30,10 +30,17 @@ class RiwayatTransaksiController extends Controller
         return view('cekTransaksi', ['data' => $transaksi]);
     }
 
-    public function cetak()
+    public function cetak($id_transaksi)
     {
         $transaksi = Transaksi::where('status_pencucian', 'SELESAI')->findOrFail($id_transaksi);
-        $pdf = PDF::loadView('transaksi.cetak', ['transaksi' => $transaksi]);
+        $pdf = Pdf::loadView('transaksi.cetak', ['transaksi' => $transaksi]);
+        return $pdf->stream();
+    }
+
+    public function cetakSemua()
+    {
+        $transaksi = Transaksi::where('status_pencucian', 'SELESAI')->get();
+        $pdf = Pdf::loadView('transaksi.cetak', ['transaksi' => $transaksi]);
         return $pdf->stream();
     }
 

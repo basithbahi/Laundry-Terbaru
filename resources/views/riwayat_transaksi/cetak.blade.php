@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Membuat Laporan PDF Dengan DOMPDF Laravel</title>
+    <title>Daftar Riwayat Transaksi</title>
     <style type="text/css">
         body {
             font-family: Arial, sans-serif;

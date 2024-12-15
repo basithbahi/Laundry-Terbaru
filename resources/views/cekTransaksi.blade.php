@@ -13,6 +13,11 @@
   background-color: #9999FF;
   color: white;
 }
+.table-responsive {
+  max-height: 400px;
+  overflow-y: auto;
+  font-size: 14px;
+}
 </style>
   <div class="card shadow mb-4">
     <div class="card-header py-3">

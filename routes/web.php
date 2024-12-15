@@ -131,6 +131,7 @@ Route::controller(RiwayatTransaksiController::class)->prefix('riwayat_transaksi'
     Route::get('hapus/{id}', 'hapus')->name('riwayat_transaksi.hapus');
     Route::get('search', 'search')->name('riwayat_transaksi.search');
     Route::get('cetak', 'cetak')->name('riwayat_transaksi.cetak');
+    Route::get('cetakSemua', 'cetakSemua')->name('riwayat_transaksi.cetakSemua');
 });
 
 Route::middleware('auth')->group(function () {
